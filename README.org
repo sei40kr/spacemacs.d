@@ -1,0 +1,7 @@
+#+TITLE: spacemacs.d
+
+* Manual Installation
+
+  #+BEGIN_SRC sh
+    git clone git@github.com:sei40kr/spacemacs.d.git ~/.spacemacs.d
+  #+END_SRC
