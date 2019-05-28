@@ -121,6 +121,7 @@ values."
      (ruby :variables
            ruby-enable-enh-ruby-mode t
            ruby-version-manager nil
+           ruby-backend 'lsp
            inf-ruby-default-implementation "pry")
      (rust :variables
            rust-backend 'lsp
