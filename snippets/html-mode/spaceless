@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: spaceless
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: spaceless
+# --
+
+{% spaceless %}
+  $0
+{% endspaceless %}
