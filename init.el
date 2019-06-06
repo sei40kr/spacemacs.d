@@ -226,10 +226,10 @@ values."
 
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '(avy-migemo
+                                    company-plsense
                                     ddskk
                                     migemo
-                                    pangu-spacing
-                                    plsense)
+                                    pangu-spacing)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -611,6 +611,7 @@ It should only modify the values of Spacemacs settings."
                 "java"
                 "javascript"
                 "org"
+                "perl"
                 "plantuml"
                 "quickrun"
                 "ruby"
@@ -645,6 +646,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init-java)
   (my/init-javascript)
   (my/init-org)
+  (my/init-perl)
   (my/init-plantuml)
   (my/init-quickrun)
   (my/init-ruby)
@@ -667,6 +669,7 @@ dump."
                   "java"
                   "javascript"
                   "org"
+                  "perl"
                   "plantuml"
                   "quickrun"
                   "ruby"
