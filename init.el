@@ -112,7 +112,7 @@ values."
      (json :variables json-fmt-tool 'prettier)
      latex
      major-modes
-     markdown
+     (markdown :variables markdown-live-preview-engine 'vmd)
      perl5
      perl6
      php
