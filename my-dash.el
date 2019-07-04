@@ -88,12 +88,6 @@
                                           html-additional-docsets
                                           '()))))
 
-;; Prevent dash layer from activating all docsets
-(advice-add #'dash//activate-package-docsets
-            :override (lambda (path &rest _)
-                        (unless (string-blank-p path)
-                          (setq helm-dash-docsets-path path))))
-
 (defun my/init-dash ()
   ;; helm-dash
   (add-hook 'c-mode-hook #'my//c-set-helm-dash-docsets)

@@ -160,6 +160,7 @@ values."
      (cmake :variables cmake-enable-cmake-ide-support t)
      dap
      (dash :variables
+           dash-autoload-common-docsets nil
            helm-dash-docset-newpath (case system-type
                                       ('darwin "~/Library/Application Support/Dash/DocSets")
                                       ('gnu/linux "~/.local/share/Zeal/Zeal/docsets")
