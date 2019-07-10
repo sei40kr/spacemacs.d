@@ -127,8 +127,10 @@ values."
            rust-backend 'lsp
            rust-format-on-save t)
      (scala :variables
+            scala-enable-eldoc t
             scala-auto-insert-asterisk-in-comments t
-            scala-auto-start-ensime t)
+            scala-backend 'scala-metals
+            scala-auto-start-backend t)
      shell-scripts
      sql
      (typescript :variables
