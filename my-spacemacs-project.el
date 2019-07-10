@@ -5,7 +5,8 @@
   (projectile-dired)
 
   (when (neo-global--window-exists-p)
-      (neotree-show)))
+    (save-selected-window
+      (neotree-refresh))))
 
 (defun my/init-spacemacs-project ()
   (setq projectile-git-submodule-command nil)
