@@ -696,6 +696,7 @@ before packages are loaded."
   (my/config-quickrun)
   (my/config-spacemacs-evil)
 
+  (global-evil-mc-mode t)
   (spacemacs/toggle-camel-case-motion-globally-on)
 
   (which-key-define-key-recursively global-map [escape] #'ignore)
