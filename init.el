@@ -188,7 +188,7 @@ values."
             shell-default-position 'bottom)
      systemd
      vagrant
-     xclipboard
+     (xclipboard :variables xclipboard-enable-cliphist t)
      ;; Vim
      evil-commentary
      (evil-snipe :variables
