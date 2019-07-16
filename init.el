@@ -363,7 +363,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs
+   dotspacemacs-mode-line-theme '(doom
                                   :separator nil
                                   :separator-scale 1.0)
 
