@@ -71,8 +71,8 @@ values."
               neo-confirm-kill-buffers-for-files-in-directory 'off-p
               neo-force-change-root t
               neo-smart-open t
-              neo-theme (if (display-graphic-p) 'arrow 'ascii)
-              neo-vc-integration '(face))
+              neo-theme (if (display-graphic-p) 'icons 'ascii)
+              neo-vc-integration nil)
      ;; Fun
      ;; International support
      japanese
