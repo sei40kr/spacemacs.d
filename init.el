@@ -680,7 +680,10 @@ dump."
                   "syntax-checking"
                   "typescript"))
     (load (format "%smy-%s" dotspacemacs-directory item)))
-  (load (concat dotspacemacs-directory "my-init")))
+  (load (concat dotspacemacs-directory "my-init"))
+
+  ;; doom-modeline
+  (setq doom-modeline-buffer-file-name-style #'truncate-upto-root))
 
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
