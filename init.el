@@ -40,24 +40,61 @@ values."
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     ;; Spacemacs
+     (spacemacs-evil :variables
+                     ;; evilj
+                     evil-want-C-i-jump t
+                     evil-want-C-u-scroll t
+                     ;; evil-escape
+                     evil-escape-key-sequence "jk")
+     (spacemacs-project :variables
+                        ;; projectile
+                        projectile-git-submodule-command nil)
      ;; Chat
      ;; Checkers
-     syntax-checking
+     (syntax-checking :variables
+                      flycheck-check-syntax-automatically '(save mode-enabled)
+                      flycheck-display-errors-delay 0.3
+                      flycheck-pos-tip-timeout 999
+                      flycheck-pos-tip-display-errors-tty-function #'flycheck-popup-tip-show-popup)
      ;; Completion
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior nil
-                      auto-completion-enable-help-tooltip t)
-     helm
+                      auto-completion-enable-help-tooltip t
+                      ;; yasnippet
+                      yas-new-snippet-default "\
+# -*- mode: snippet -*-
+# name: $1
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: ${2:${1:$(yas--key-from-desc yas-text)}}
+# --
+
+$0")
+     (helm :variables
+           ;; helm-buffers
+           helm-mini-default-sources '(helm-source-buffers-list))
      (templates :variables
-                templates-private-directory
-                (concat dotspacemacs-directory "templates")
-                templates-use-default-templates nil)
+                templates-private-directory (concat dotspacemacs-directory "templates")
+                templates-use-default-templates nil
+                ;; yatemplate
+                auto-insert-query nil
+                auto-save-default nil)
      ;; Emacs
      (org :variables
           org-want-todo-bindings t
           org-enable-github-support t
-          org-enable-reveal-js-support t)
+          org-enable-reveal-js-support t
+          ;; org-bullets
+          org-bullets-bullet-list '("" "" "" "" "" "" "" "" "" "")
+          ;; org-plus-contrib
+          org-confirm-babel-evaluate nil
+          org-export-with-section-numbers nil
+          org-export-with-title t
+          org-export-with-toc nil
+          org-export-preserve-breaks t
+          ;; org-re-reveal
+          org-re-reveal-root (concat (getenv "HOME") "/org/reveal-js"))
      ;; E-mail
      ;; Framework
      react
@@ -92,35 +129,54 @@ values."
      (go :variables
          go-format-before-save t
          go-tab-width 4
-         go-use-test-args "-race -timeout 10s")
+         go-use-test-args "-race -timeout 10s"
+         ;; gofmt
+         gofmt-command "goimports"
+         gofmt-show-errors 'echo
+         ;; gogetdoc
+         godoc-at-point-function #'godoc-gogetdoc)
      (haskell :variables
               haskell-completion-backend 'intero
               haskell-enable-hindent t)
      (html :variables
            less-enable-lsp t
            scss-enable-lsp t
-           web-fmt-tool 'prettier)
+           web-fmt-tool 'prettier
+           ;; emmet-mode
+           emmet-self-closing-tag-style " /")
      (java :variables
            java-backend 'lsp
            java--ensime-modes '())
      (javascript :variables
                  javascript-backend 'lsp
                  javascript-fmt-tool 'prettier
-                 javascript-import-tool 'import-js)
+                 javascript-import-tool 'import-js
+                 ;; js2-mode
+                 js2-mode-show-parse-errors nil
+                 js2-mode-show-strict-warnings nil)
      (json :variables json-fmt-tool 'prettier)
      latex
      major-modes
      (markdown :variables markdown-live-preview-engine 'vmd)
-     perl5
+     (perl5 :variables
+            ;; cperl-mode
+            cperl-mode-abbrev-table '())
      perl6
      php
-     plantuml
+     (plantuml :variables
+               ;; ob-plantuml
+               org-plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar"
+               ;; plantuml-mode
+               plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar")
      (python :variables python-backend 'lsp)
      (ruby :variables
            ruby-enable-enh-ruby-mode t
            ruby-version-manager nil
            ruby-backend 'lsp
-           inf-ruby-default-implementation "pry")
+           ;; inf-ruby
+           inf-ruby-default-implementation "pry"
+           ;; rubocopfmt
+           rubocopfmt-show-errors 'echo)
      (rust :variables
            rust-backend 'lsp
            rust-format-on-save t)
@@ -148,7 +204,9 @@ values."
      github
      (version-control :variables
                       version-control-global-margin t
-                      version-control-diff-tool (if (display-graphic-p) 'diff-hl 'git-gutter+)
+                      version-control-diff-tool (if (display-graphic-p)
+                                                    'diff-hl
+                                                  'git-gutter+)
                       version-control-diff-side 'left)
      ;; Tags
      gtags
@@ -604,22 +662,17 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil)
    dotspacemacs-pretty-docs nil))
 
-(dolist (item '("auto-completion"
-                "dash"
+(dolist (item '("dash"
                 "git"
                 "go"
-                "html"
                 "java"
                 "javascript"
-                "org"
                 "perl"
                 "plantuml"
                 "quickrun"
-                "ruby"
                 "rust"
                 "spacemacs-evil"
                 "spacemacs-project"
-                "syntax-checking"
                 "typescript"))
   (load (format "%smy-%s" dotspacemacs-directory item)))
 (load (concat dotspacemacs-directory "my-init"))
@@ -639,51 +692,61 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (my/init)
-  (my/init-auto-completion)
   (my/init-dash)
   (my/init-git)
   (my/init-go)
-  (my/init-html)
   (my/init-java)
   (my/init-javascript)
-  (my/init-org)
   (my/init-perl)
   (my/init-plantuml)
   (my/init-quickrun)
-  (my/init-ruby)
   (my/init-rust)
-  (my/init-spacemacs-evil)
   (my/init-spacemacs-project)
-  (my/init-syntax-checking)
-  (my/init-typescript))
+  (my/init-typescript)
+
+  (setq
+   ;; exec-path-from-shell
+   exec-path-from-shell-variables '("PATH"
+                                    "MANPATH"
+                                    "CARGO_HOME"
+                                    "GOPATH"
+                                    "PERL5LIB"
+                                    "PERL_LOCAL_LIB_ROOT"
+                                    "PERL_MB_OPT"
+                                    "PERL_MM_OPT"
+                                    "PYENV_ROOT"
+                                    "RBENV_ROOT"
+                                    "RUST_SRC_PATH")
+   exec-path-from-shell-arguments '("-l")
+   ;; doom-modeline
+   doom-modeline-buffer-file-name-style #'truncate-upto-root
+   ;; flycheck-popup
+   tooltip-delay 0.3
+   tooltip-hide-delay 999
+   tooltip-short-delay 0.1
+   flycheck-popup-tip-error-prefix "* "
+   ;; lsp-mode
+   lsp-prefer-flymake :none))
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
-  (dolist (item '("auto-completion"
-                  "dash"
+  (dolist (item '("dash"
                   "git"
                   "go"
-                  "html"
                   "java"
                   "javascript"
-                  "org"
                   "perl"
                   "plantuml"
                   "quickrun"
-                  "ruby"
                   "rust"
                   "spacemacs-evil"
                   "spacemacs-project"
-                  "syntax-checking"
                   "typescript"))
     (load (format "%smy-%s" dotspacemacs-directory item)))
-  (load (concat dotspacemacs-directory "my-init"))
-
-  ;; doom-modeline
-  (setq doom-modeline-buffer-file-name-style #'truncate-upto-root))
+  (load (concat dotspacemacs-directory "my-init")))
 
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
@@ -691,6 +754,9 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (if window-system
+    (exec-path-from-shell-initialize))
+
   (my/config)
   (my/config-git)
   (my/config-quickrun)

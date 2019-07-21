@@ -7,22 +7,6 @@
 
 ;; others
 
-(defun my//exec-path-from-shell-initialize ()
-  (setq
-   exec-path-from-shell-variables '("PATH"
-                                    "MANPATH"
-                                    "CARGO_HOME"
-                                    "GOPATH"
-                                    "PERL5LIB"
-                                    "PERL_LOCAL_LIB_ROOT"
-                                    "PERL_MB_OPT"
-                                    "PERL_MM_OPT"
-                                    "PYENV_ROOT"
-                                    "RBENV_ROOT"
-                                    "RUST_SRC_PATH")
-   exec-path-from-shell-arguments '("-l"))
-  (exec-path-from-shell-initialize))
-
 (defun my//enable-frame-transparency (frame)
   (spacemacs/enable-transparency frame
                                  (cons dotspacemacs-active-transparency
@@ -39,36 +23,9 @@
    select-enable-clipboard nil
 
    ;; avy
-   avy-timeout-seconds 0.0
-
-   ;; cperl-mode
-   cperl-mode-abbrev-table '()
-
-   ;; helm
-   helm-mini-default-sources '(helm-source-buffers-list)
-
-   ;; lsp
-   lsp-prefer-flymake :none
-
-   ;; semantic
-   semanticdb-find-default-throttle '(file local project unloaded system)
-
-   ;; spacemacs-common
-   spacemacs-theme-comment-italic t
-   spacemacs-theme-underline-parens nil
-
-   ;; yatemplate
-   auto-insert-query nil
-   auto-save-default nil)
-  (add-to-list 'configuration-layer-elpa-archives
-               '("melpa-stable" . "stable.melpa.org/packages/"))
-  (add-to-list 'package-pinned-packages '(ensime . "melpa-stable")))
+   avy-timeout-seconds 0.0))
 
 (defun my/config ()
-  ;; Copy environment variables from shell
-  (if (eq window-system 'ns)
-      (my//exec-path-from-shell-initialize))
-
   (require 'flycheck-popup-tip)
 
   ;; Activate snippets

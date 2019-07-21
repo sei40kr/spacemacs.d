@@ -1,6 +1,3 @@
-(defun my//java-setup-company ()
-  (set (make-local-variable 'company-minimum-prefix-length) 1))
-
 (defun my/init-java ()
   (setq lsp-java-vmargs (list "-noverify"
                               "-Xmx1G"
@@ -14,6 +11,4 @@
         lsp-java-format-settings-url "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml"
         lsp-java-import-maven-enabled t
         lsp-java-progress-report nil
-        lsp-java-completion-guess-arguments t)
-
-  (add-hook 'java-mode-hook #'my//java-setup-company))
+        lsp-java-completion-guess-arguments t))
