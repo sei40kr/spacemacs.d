@@ -146,11 +146,15 @@ $0")
            emmet-self-closing-tag-style " /")
      (java :variables
            java-backend 'lsp
-           java--ensime-modes '())
+           ;; eclim
+           eclimd-default-workspace "~/develop/workspace"
+           eclimd-autostart t)
      (javascript :variables
-                 javascript-backend 'lsp
                  javascript-fmt-tool 'prettier
+                 javascript-backend 'lsp
                  javascript-import-tool 'import-js
+                 javascript-repl 'nodejs
+                 javascript-lsp-linter nil
                  ;; js2-mode
                  js2-mode-show-parse-errors nil
                  js2-mode-show-strict-warnings nil)
@@ -189,7 +193,9 @@ $0")
      sql
      (typescript :variables
                  typescript-fmt-tool 'prettier
-                 typescript-backend 'tide)
+                 typescript-backend 'tide
+                 typescript-linter 'eslint
+                 typescript-lsp-linter nil)
      vimscript
      yaml
      ;; Readers
