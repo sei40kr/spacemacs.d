@@ -4,8 +4,8 @@
 # --
 
 if ${1:cond}
-  ${2:stuff}
+    ${2:stuff}
 else
-  ${3:other}
+    ${3:other}
 end
 $0
