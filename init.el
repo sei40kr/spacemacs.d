@@ -275,16 +275,12 @@ $0")
      (jest-snippets :location local)
      (maven-search :location (recipe :fetcher github
                                      :repo "syohex/emacs-maven-search"))
-     org2blog
      (perl-refactoring :location (recipe :fetcher github
                                          :repo "syohex/emacs-perl-refactoring"))
      quickrun
      (rails-snippets :location local)
      (react-snippets :location local)
-     (redux-snippets :location local)
-     ;; org2blog deps
-     metaweblog
-     xml-rpc)
+     (redux-snippets :location local))
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
