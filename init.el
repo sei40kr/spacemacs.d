@@ -203,6 +203,7 @@ $0")
            deft-directory "~/Google ドライブ/notes")
      ;; Music
      ;; Operating systems
+     osx
      ;; Pair programming
      floobits
      ;; Source control
