@@ -45,6 +45,7 @@ values."
                      ;; evilj
                      evil-want-C-i-jump t
                      evil-want-C-u-scroll t
+                     evil-want-Y-yank-to-eol t
                      ;; evil-escape
                      evil-escape-key-sequence "jk")
      (spacemacs-project :variables
