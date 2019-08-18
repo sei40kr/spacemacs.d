@@ -766,11 +766,15 @@ before packages are loaded."
   (my/config-quickrun)
   (my/config-spacemacs-evil)
 
-  (global-evil-mc-mode t)
   (spacemacs/toggle-camel-case-motion-globally-on)
 
   (which-key-define-key-recursively global-map [escape] #'ignore)
-  (which-key-define-key-recursively evil-emacs-state-map [escape] #'ignore))
+  (which-key-define-key-recursively evil-emacs-state-map [escape] #'ignore)
+
+  ;; doom-themes
+  (doom-themes-neotree-config)
+  ;; evil-mc
+  (global-evil-mc-mode t))
 
 (setq custom-file (concat spacemacs-cache-directory ".my-custom-settings"))
 ;; Do not write anything past this comment. This is where Emacs will
