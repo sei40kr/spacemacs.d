@@ -41,74 +41,32 @@ values."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      ;; Spacemacs
-     (spacemacs-evil :variables
-                     ;; evilj
-                     evil-want-C-i-jump t
-                     evil-want-C-u-scroll t
-                     evil-want-Y-yank-to-eol t
-                     ;; evil-escape
-                     evil-escape-key-sequence "jk")
-     (spacemacs-project :variables
-                        ;; projectile
-                        projectile-git-submodule-command nil)
+     spacemacs-evil
+     spacemacs-project
      ;; Chat
      ;; Checkers
-     (syntax-checking :variables
-                      flycheck-check-syntax-automatically '(save mode-enabled)
-                      flycheck-display-errors-delay 0.3
-                      flycheck-pos-tip-timeout 999
-                      flycheck-pos-tip-display-errors-tty-function #'flycheck-popup-tip-show-popup)
+     syntax-checking
      ;; Completion
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete
                       auto-completion-tab-key-behavior nil
-                      auto-completion-enable-help-tooltip t
-                      ;; yasnippet
-                      yas-new-snippet-default "\
-# -*- mode: snippet -*-
-# name: $1
-# contributor : Seong Yong-ju <sei40kr@gmail.com>
-# key: ${2:${1:$(yas--key-from-desc yas-text)}}
-# --
-
-$0")
-     (helm :variables
-           ;; helm-buffers
-           helm-mini-default-sources '(helm-source-buffers-list))
+                      auto-completion-enable-help-tooltip t)
+     helm
      (templates :variables
-                templates-private-directory (concat dotspacemacs-directory "templates")
-                templates-use-default-templates nil
-                ;; yatemplate
-                auto-insert-query nil
-                auto-save-default nil)
+                templates-private-directory
+                (concat dotspacemacs-directory "templates")
+                templates-use-default-templates nil)
      ;; Emacs
      (org :variables
           org-want-todo-bindings t
           org-enable-github-support t
-          org-enable-reveal-js-support t
-          ;; org-bullets
-          org-bullets-bullet-list '("" "" "" "" "" "" "" "" "" "")
-          ;; org-plus-contrib
-          org-confirm-babel-evaluate nil
-          org-export-with-section-numbers nil
-          org-export-with-title t
-          org-export-with-toc nil
-          org-export-preserve-breaks t
-          ;; org-re-reveal
-          org-re-reveal-root (concat (getenv "HOME") "/org/reveal-js"))
+          org-enable-reveal-js-support t)
      ;; E-mail
      ;; Framework
      react
      ruby-on-rails
      ;; Filetree
-     (neotree :variables
-              neo-theme (if (display-graphic-p) 'icons 'ascii)
-              neo-force-change-root t
-              neo-confirm-create-directory #'off-p
-              neo-confirm-create-file #'off-p
-              neo-confirm-delete-directory-recursively #'off-p
-              neo-confirm-delete-file #'y-or-n-p
-              neo-confirm-kill-buffers-for-files-in-directory #'off-p)
+     neotree
      ;; Fun
      ;; International support
      japanese
@@ -130,58 +88,34 @@ $0")
      (go :variables
          go-format-before-save t
          go-tab-width 4
-         go-use-test-args "-race -timeout 10s"
-         ;; gofmt
-         gofmt-command "goimports"
-         gofmt-show-errors 'echo
-         ;; gogetdoc
-         godoc-at-point-function #'godoc-gogetdoc)
+         go-use-test-args "-race -timeout 10s")
      (haskell :variables
               haskell-completion-backend 'intero
               haskell-enable-hindent t)
      (html :variables
            less-enable-lsp t
            scss-enable-lsp t
-           web-fmt-tool 'prettier
-           ;; emmet-mode
-           emmet-self-closing-tag-style " /")
-     (java :variables
-           java-backend 'lsp
-           ;; eclim
-           eclimd-default-workspace "~/develop/workspace"
-           eclimd-autostart t)
+           web-fmt-tool 'prettier)
+     (java :variables java-backend 'lsp)
      (javascript :variables
                  javascript-fmt-tool 'prettier
                  javascript-backend 'lsp
                  javascript-import-tool 'import-js
                  javascript-repl 'nodejs
-                 javascript-lsp-linter nil
-                 ;; js2-mode
-                 js2-mode-show-parse-errors nil
-                 js2-mode-show-strict-warnings nil)
+                 javascript-lsp-linter nil)
      (json :variables json-fmt-tool 'prettier)
      latex
      major-modes
      (markdown :variables markdown-live-preview-engine 'vmd)
-     (perl5 :variables
-            ;; cperl-mode
-            cperl-mode-abbrev-table '())
+     perl5
      perl6
      php
-     (plantuml :variables
-               ;; ob-plantuml
-               org-plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar"
-               ;; plantuml-mode
-               plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar")
+     plantuml
      (python :variables python-backend 'lsp)
      (ruby :variables
            ruby-enable-enh-ruby-mode t
            ruby-version-manager nil
-           ruby-backend 'lsp
-           ;; inf-ruby
-           inf-ruby-default-implementation "pry"
-           ;; rubocopfmt
-           rubocopfmt-show-errors 'echo)
+           ruby-backend 'lsp)
      (rust :variables
            rust-backend 'lsp
            rust-format-on-save t)
@@ -243,8 +177,7 @@ $0")
      nginx
      (node :variables node-add-modules-path t)
      pandoc
-     (prettier :variables
-               prettier-js-show-errors 'echo)
+     prettier
      ;; (ranger :variables
      ;;   ranger-show-hidden t)
      (restclient :variables restclient-use-org t)
@@ -432,8 +365,8 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-colorize-cursor-according-to-state t
 
    ;; Default font or prioritized list of fonts.
-   dotspacemacs-default-font '("Menlo for Powerline"
-                               :size 20
+   dotspacemacs-default-font '("Input Mono"
+                               :size 19
                                :weight normal
                                :width normal)
 
@@ -666,20 +599,10 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil)
    dotspacemacs-pretty-docs nil))
 
+(load (concat dotspacemacs-directory "functions"))
 (dolist (item '("dash"
-                "git"
-                "go"
-                "java"
-                "javascript"
-                "perl"
-                "plantuml"
-                "quickrun"
-                "rust"
-                "spacemacs-evil"
-                "spacemacs-project"
                 "typescript"))
   (load (format "%smy-%s" dotspacemacs-directory item)))
-(load (concat dotspacemacs-directory "my-init"))
 
 (defun dotspacemacs/user-env ()
   "Environment variables setup.
@@ -695,62 +618,210 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (my/init)
   (my/init-dash)
-  (my/init-git)
-  (my/init-go)
-  (my/init-java)
-  (my/init-javascript)
-  (my/init-perl)
-  (my/init-plantuml)
-  (my/init-quickrun)
-  (my/init-rust)
-  (my/init-spacemacs-project)
   (my/init-typescript)
 
+  ;; built-ins
+  (setq create-lockfiles nil
+        select-enable-clipboard nil)
+
+  ;; avy
+  (setq avy-timeout-seconds 0.0)
+
+  ;; emmet-mode
+  (setq emmet-self-closing-tag-style " /")
+
+  ;; evil
+  (setq evil-want-C-i-jump t
+        evil-want-C-u-scroll t
+        evil-want-Y-yank-to-eol t
+        evil-escape-key-sequence "jk")
+
+  ;; exec-path-from-shell
+  (setq exec-path-from-shell-variables '("PATH"
+                                         "MANPATH"
+                                         "CARGO_HOME"
+                                         "GOPATH"
+                                         "PERL5LIB"
+                                         "PERL_LOCAL_LIB_ROOT"
+                                         "PERL_MB_OPT"
+                                         "PERL_MM_OPT"
+                                         "PYENV_ROOT"
+                                         "RBENV_ROOT"
+                                         "RUST_SRC_PATH")
+        exec-path-from-shell-arguments '("-l"))
+
+  ;; flycheck
+  (setq flycheck-check-syntax-automatically '(save mode-enabled)
+        flycheck-display-errors-delay 0.3
+        ;; flycheck-popup-tip
+        flycheck-pos-tip-display-errors-tty-function #'flycheck-popup-tip-show-popup
+        flycheck-popup-tip-error-prefix "* "
+        ;; flycheck-pos-tip
+        flycheck-pos-tip-timeout 999
+        ;; Prevent hiding tooltips
+        tooltip-delay 0.3
+        tooltip-hide-delay 999
+        tooltip-short-delay 0.1)
+
+  ;; go
+  (setq gofmt-command "goimports"
+        gofmt-show-errors 'echo
+        godoc-at-point-function #'godoc-gogetdoc)
+  (add-hook 'go-mode-hook
+            #'(lambda ()
+                (require 'flycheck)
+                (add-to-list 'flycheck-disabled-checkers 'gometalinter)
+                (add-to-list 'flycheck-disabled-checkers 'go-gofmt)
+                (add-to-list 'flycheck-disabled-checkers 'go-test)
+                (add-to-list 'flycheck-disabled-checkers 'go-megacheck)))
+
+  ;; helm
+  (setq helm-mini-default-sources '(helm-source-buffers-list))
+
+  ;; java
+  (let* ((lombok-path (concat dotspacemacs-directory "/lombok-1.18.6.jar")))
+    (setq lsp-java-vmargs (list "-noverify"
+                                "-Xmx1G"
+                                "-XX:+UseG1GC"
+                                "-XX:+UseStringDeduplication"
+                                (concat "-javaagent:" lombok-path)
+                                (concat "-Xbootclasspath/a:" lombok-path))
+          lsp-java-save-action-organize-imports t
+          lsp-java-auto-build nil
+          lsp-java-format-enabled t
+          lsp-java-format-settings-url "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml"
+          lsp-java-import-maven-enabled t
+          lsp-java-progress-report nil
+          lsp-java-completion-guess-arguments t
+          ;; eclim
+          eclimd-default-workspace "~/develop/workspace"
+          eclimd-autostart t))
+  (add-hook 'java-mode-hook #'lsp-java-boot-lens-mode)
+
+  ;; javascript
+  (setq js2-mode-show-parse-errors nil
+        js2-mode-show-strict-warnings nil)
+  (spacemacs/add-to-hooks
+   #'(lambda ()
+       (require 'flycheck)
+       (add-to-list 'flycheck-disabled-checkers 'javascript-jshint)
+       (add-to-list 'flycheck-disabled-checkers 'javascript-standard))
+   '(js2-mode-hook rjsx-mode-hook))
+
+  ;; lsp
+  (setq lsp-prefer-flymake :none)
+
+  ;; magit
+  (setq magit-refresh-status-buffer nil
+        magit-repolist-columns '(("Name" 25 magit-repolist-column-ident nil)
+                                 ("Version" 25 magit-repolist-column-version nil)
+                                 ("Path" 99 magit-repolist-column-path nil))
+        magit-repository-directories '(("~/.dotfiles" . 0)
+                                       ("~/.zplugin/plugins" . 1)
+                                       ("~/.emacs.d" . 0)
+                                       ("~/.spacemacs.d" . 0)
+                                       ("~/develop/workspace" . 1))
+        magit-revision-insert-related-refs nil)
+  (with-eval-after-load 'magit
+    (remove-hook 'magit-refs-sections-hook 'magit-insert-tags)
+    (remove-hook 'server-switch-hook 'magit-commit-diff))
+
+  ;; neotree
+  (setq neo-theme (if (display-graphic-p) 'icons 'ascii)
+        neo-force-change-root t
+        neo-confirm-create-directory #'off-p
+        neo-confirm-create-file #'off-p
+        neo-confirm-delete-directory-recursively #'off-p
+        neo-confirm-delete-file #'y-or-n-p
+        neo-confirm-kill-buffers-for-files-in-directory #'off-p)
+
+  ;; org
+  (setq org-confirm-babel-evaluate nil
+        org-export-with-section-numbers nil
+        org-export-with-title t
+        org-export-with-toc nil
+        org-export-preserve-breaks t
+        ;; org-re-reveal
+        org-re-reveal-root (concat (getenv "HOME") "/org/reveal-js"))
+
+  ;; perl5
+  (setq cperl-mode-abbrev-table '())
+  (add-hook 'cperl-mode-hook #'spacemacs/ggtags-mode-enable)
+
+  ;; plantuml
+  (setq org-plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar"
+        plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar")
+  (add-to-list 'auto-mode-alist '("\\.pu\\'" . plantuml-mode))
+
+  ;; prettier
+  (setq prettier-js-show-errors 'echo)
+
+  ;; projectile
+  (setq projectile-git-submodule-command nil)
+  (eval-after-load 'helm-projectile
+    '(setq projectile-switch-project-action
+           #'(lambda ()
+               (projectile-dired)
+               (when (neo-global--window-exists-p)
+                 (save-selected-window (neotree-refresh))))))
+
+  ;; quickrun
+  (setq quickrun-focus-p nil
+        quickrun-option-shebang t)
+  (eval-after-load 'evil
+    '(evil-define-key 'normal quickrun--mode-map "q" #'quit-window))
+  (eval-after-load 'golden-ratio
+    '(push "*quickrun*" golden-ratio-exclude-buffer-names))
+  (eval-after-load 'popwin
+    '(push '("*quickrun*"
+             :dedicated t
+             :position bottom
+             :stick t
+             :noselect nil
+             :height 0.4)
+           popwin:special-display-config))
+
+  ;; ruby
   (setq
-   ;; exec-path-from-shell
-   exec-path-from-shell-variables '("PATH"
-                                    "MANPATH"
-                                    "CARGO_HOME"
-                                    "GOPATH"
-                                    "PERL5LIB"
-                                    "PERL_LOCAL_LIB_ROOT"
-                                    "PERL_MB_OPT"
-                                    "PERL_MM_OPT"
-                                    "PYENV_ROOT"
-                                    "RBENV_ROOT"
-                                    "RUST_SRC_PATH")
-   exec-path-from-shell-arguments '("-l")
-   ;; doom-modeline
-   doom-modeline-buffer-file-name-style #'truncate-upto-root
-   ;; flycheck-popup
-   tooltip-delay 0.3
-   tooltip-hide-delay 999
-   tooltip-short-delay 0.1
-   flycheck-popup-tip-error-prefix "* "
-   ;; lsp-mode
-   lsp-prefer-flymake :none))
+   ;; inf-ruby
+   inf-ruby-default-implementation "pry"
+   ;; rubocopfmt
+   rubocopfmt-show-errors 'echo)
+
+  ;; rust
+  (add-hook 'rust-mode-hook
+            #'(lambda ()
+                (require 'flycheck)
+                (add-to-list 'flycheck-disabled-checkers 'rust-cargo)))
+
+  ;; themes
+  (setq doom-modeline-buffer-file-name-style #'truncate-upto-root
+        fci-rule-color "#444444")
+
+  ;; yasnippet
+  (setq yas-new-snippet-default "\
+# -*- mode: snippet -*-
+# name: $1
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: ${2:${1:$(yas--key-from-desc yas-text)}}
+# --
+
+$0")
+
+  ;; yatemplate
+  (setq auto-insert-query nil
+        auto-save-default nil))
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
+  (load (concat dotspacemacs-directory "functions"))
   (dolist (item '("dash"
-                  "git"
-                  "go"
-                  "java"
-                  "javascript"
-                  "perl"
-                  "plantuml"
-                  "quickrun"
-                  "rust"
-                  "spacemacs-evil"
-                  "spacemacs-project"
                   "typescript"))
-    (load (format "%smy-%s" dotspacemacs-directory item)))
-  (load (concat dotspacemacs-directory "my-init")))
+    (load (format "%smy-%s" dotspacemacs-directory item))))
 
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
@@ -758,23 +829,46 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (if window-system
-    (exec-path-from-shell-initialize))
-
-  (my/config)
-  (my/config-git)
-  (my/config-quickrun)
-  (my/config-spacemacs-evil)
-
   (spacemacs/toggle-camel-case-motion-globally-on)
 
+  ;; exec-path-from-shell
+  (if window-system
+      (exec-path-from-shell-initialize))
+
+  ;; evil
+  (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
   (which-key-define-key-recursively global-map [escape] #'ignore)
   (which-key-define-key-recursively evil-emacs-state-map [escape] #'ignore)
+  (eval-after-load 'clean-aindent-mode
+    '(bind-key (kbd "C-w") #'clean-aindent--bsunindent))
+  (eval-after-load 'company
+    '(bind-key (kbd "C-w") nil company-active-map))
+  (eval-after-load 'helm
+    '(bind-key (kbd "C-w") #'backward-kill-word helm-map))
+  (global-evil-mc-mode t)
 
-  ;; doom-themes
+  ;; flycheck
+  (require 'flycheck-popup-tip)
+
+  ;; quickrun
+  (spacemacs/declare-prefix "cq" "quickrun")
+  (spacemacs/set-leader-keys
+    "cqq" #'quickrun
+    "cqa" #'quickrun-with-arg)
+
+  ;; themes
   (doom-themes-neotree-config)
-  ;; evil-mc
-  (global-evil-mc-mode t))
+
+  ;; yasnippet snippets
+  (require 'competitive-programming-snippets)
+  (require 'jest-snippets)
+  (require 'rails-snippets)
+  (require 'react-snippets)
+  (require 'redux-snippets)
+
+  ;; Fix frame transparency
+  (spacemacs/enable-transparency)
+  (add-hook 'after-make-frame-functions #'spacemacs/enable-transparency))
 
 (setq custom-file (concat spacemacs-cache-directory ".my-custom-settings"))
 ;; Do not write anything past this comment. This is where Emacs will
