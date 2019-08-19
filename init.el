@@ -701,10 +701,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
           lsp-java-code-generation-hash-code-equals-use-instanceof t
           lsp-java-code-generation-use-blocks t
           lsp-java-code-generation-generate-comments t
-          lsp-java-code-generation-to-string-code-style "STRING_BUILDER_CHAINED"
-          ;; eclim
-          eclimd-default-workspace "~/develop/workspace"
-          eclimd-autostart t))
+          lsp-java-code-generation-to-string-code-style "STRING_BUILDER_CHAINED"))
   (add-hook 'java-mode-hook #'lsp-java-boot-lens-mode)
 
   ;; javascript
