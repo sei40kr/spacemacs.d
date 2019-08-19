@@ -688,12 +688,17 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
                                 (concat "-javaagent:" lombok-path)
                                 (concat "-Xbootclasspath/a:" lombok-path))
           lsp-java-save-action-organize-imports t
-          lsp-java-auto-build nil
+          lsp-java-autobuild-enabled nil
           lsp-java-format-enabled t
           lsp-java-format-settings-url "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml"
           lsp-java-import-maven-enabled t
           lsp-java-progress-report nil
           lsp-java-completion-guess-arguments t
+          lsp-java-code-generation-hash-code-equals-use-java7objects t
+          lsp-java-code-generation-hash-code-equals-use-instanceof t
+          lsp-java-code-generation-use-blocks t
+          lsp-java-code-generation-generate-comments t
+          lsp-java-code-generation-to-string-code-style "STRING_BUILDER_CHAINED"
           ;; eclim
           eclimd-default-workspace "~/develop/workspace"
           eclimd-autostart t))
