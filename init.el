@@ -679,6 +679,9 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; helm
   (setq helm-mini-default-sources '(helm-source-buffers-list))
 
+  ;; hybrid
+  (setq hybrid-style-use-evil-search-module t)
+
   ;; java
   (let* ((lombok-path (concat dotspacemacs-directory "/lombok-1.18.6.jar")))
     (setq lsp-java-vmargs (list "-noverify"
