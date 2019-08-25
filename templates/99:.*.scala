@@ -1,8 +1,8 @@
-// `(file-name-nondirectory (buffer-file-name))` --- $0
-// author: Seong Yong-ju <sei40kr@gmail.com>
+package ${1:`(my/java-package)`}
 
-object Main {
-  def main(args: Array[String]): Unit = {
-    $0
-  }
+/**
+ * author: Seong Yong-ju <sei40kr@gmail.com>
+ */
+class `(my/file-class-name)` {
+  $0
 }
