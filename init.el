@@ -851,7 +851,10 @@ before packages are loaded."
     '(bind-key (kbd "C-w") nil company-active-map))
   (eval-after-load 'helm
     '(bind-key (kbd "C-w") #'backward-kill-word helm-map))
-  (global-evil-mc-mode t)
+
+  ;; evil-mc
+  (add-hook 'prog-mode-hook #'turn-on-evil-mc-mode)
+  (add-hook 'text-mode-hook #'turn-on-evil-mc-mode)
 
   ;; flycheck
   (require 'flycheck-popup-tip)
