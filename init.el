@@ -107,6 +107,7 @@ values."
      latex
      major-modes
      (markdown :variables markdown-live-preview-engine 'vmd)
+     nixos
      perl5
      perl6
      php
