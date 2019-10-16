@@ -105,6 +105,7 @@ values."
                  javascript-lsp-linter nil)
      (json :variables json-fmt-tool 'prettier)
      latex
+     lua
      major-modes
      (markdown :variables markdown-live-preview-engine 'vmd)
      nixos
