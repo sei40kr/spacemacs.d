@@ -868,9 +868,6 @@ before packages are loaded."
     "cqq" #'quickrun
     "cqa" #'quickrun-with-arg)
 
-  ;; themes
-  (doom-themes-neotree-config)
-
   ;; yasnippet snippets
   (require 'competitive-programming-snippets)
   (require 'jest-snippets)
