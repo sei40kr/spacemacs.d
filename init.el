@@ -638,6 +638,9 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
         evil-want-Y-yank-to-eol t
         evil-escape-key-sequence "jk")
 
+  ;; diff-hl
+  (setq diff-hl-side 'right)
+
   ;; flycheck
   (setq flycheck-check-syntax-automatically '(save mode-enabled)
         flycheck-display-errors-delay 0.3
