@@ -734,6 +734,12 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (with-eval-after-load 'magit
     (remove-hook 'magit-refs-sections-hook 'magit-insert-tags)
     (remove-hook 'server-switch-hook 'magit-commit-diff))
+  ;; Allow to escape a key sequence with Esc
+  ;; cf https://github.com/syl20bnr/spacemacs/issues/11998
+  (with-eval-after-load 'transient
+    (define-key transient-map        (kbd "<escape>") #'transient-quit-one)
+    (define-key transient-edit-map   (kbd "<escape>") #'transient-quit-one)
+    (define-key transient-sticky-map (kbd "<escape>") #'transient-quit-seq))
 
   ;; neotree
   (setq neo-theme (if (display-graphic-p) 'icons 'ascii)
