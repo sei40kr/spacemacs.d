@@ -802,6 +802,9 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq doom-modeline-buffer-file-name-style #'truncate-upto-root
         fci-rule-color "#444444")
 
+  ;; vc-hooks
+  (setq vc-follow-symlinks t)
+
   ;; yasnippet
   (setq yas-new-snippet-default "\
 # -*- mode: snippet -*-
