@@ -184,7 +184,7 @@ values."
      ;;   ranger-show-hidden t)
      (restclient :variables restclient-use-org t)
      (shell :variables
-            shell-default-shell 'ansi-term
+            shell-default-shell 'vterm
             shell-default-height 30
             shell-default-position 'bottom)
      systemd
