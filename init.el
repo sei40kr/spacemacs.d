@@ -207,7 +207,6 @@ values."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
    '((competitive-programming-snippets :location local)
-     exec-path-from-shell
      flycheck-popup-tip
      (jest-snippets :location local)
      (maven-search :location (recipe :fetcher github
@@ -639,20 +638,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
         evil-want-Y-yank-to-eol t
         evil-escape-key-sequence "jk")
 
-  ;; exec-path-from-shell
-  (setq exec-path-from-shell-variables '("PATH"
-                                         "MANPATH"
-                                         "CARGO_HOME"
-                                         "GOPATH"
-                                         "PERL5LIB"
-                                         "PERL_LOCAL_LIB_ROOT"
-                                         "PERL_MB_OPT"
-                                         "PERL_MM_OPT"
-                                         "PYENV_ROOT"
-                                         "RBENV_ROOT"
-                                         "RUST_SRC_PATH")
-        exec-path-from-shell-arguments '("-l"))
-
   ;; flycheck
   (setq flycheck-check-syntax-automatically '(save mode-enabled)
         flycheck-display-errors-delay 0.3
@@ -845,10 +830,6 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (spacemacs/toggle-camel-case-motion-globally-on)
-
-  ;; exec-path-from-shell
-  (if window-system
-      (exec-path-from-shell-initialize))
 
   ;; evil
   (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
