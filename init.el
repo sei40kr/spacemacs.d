@@ -126,7 +126,8 @@ values."
             scala-auto-insert-asterisk-in-comments t
             scala-backend 'scala-metals
             scala-auto-start-backend t)
-     shell-scripts
+     (shell-scripts :variables
+                    shell-scripts-backend 'lsp)
      sql
      (typescript :variables
                  typescript-fmt-tool 'prettier
