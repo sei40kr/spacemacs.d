@@ -752,9 +752,10 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (add-hook 'cperl-mode-hook #'spacemacs/ggtags-mode-enable)
 
   ;; plantuml
-  (setq org-plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar"
-        plantuml-default-exec-mode 'jar
-        plantuml-jar-path "/usr/local/opt/plantuml/libexec/plantuml.jar")
+  (let* ((plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar"))
+    (setq org-plantuml-jar-path plantuml-jar-path
+          plantuml-default-exec-mode 'jar
+          plantuml-jar-path plantuml-jar-path))
   (add-to-list 'auto-mode-alist '("\\.pu\\'" . plantuml-mode))
 
   ;; prettier
