@@ -770,6 +770,13 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
                (when (neo-global--window-exists-p)
                  (save-selected-window (neotree-refresh))))))
 
+  ;; python
+  (add-hook 'python-mode-hook
+            #'(lambda ()
+                (when (eq (spacemacs//python-backend) 'lsp)
+                  (require 'flycheck)
+                  (add-to-list 'flycheck-disabled-checkers 'python-mypy))))
+
   ;; quickrun
   (setq quickrun-focus-p nil
         quickrun-option-shebang t)
