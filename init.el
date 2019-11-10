@@ -72,7 +72,7 @@ values."
      japanese
      ;; Programming and markup languages
      (c-c++ :variables
-            c-c++-backend 'lsp-cquery
+            c-c++-backend 'lsp-clangd
             c-c++-enable-clang-format-on-save t
             c++-enable-organize-includes-on-save t
             c-c++-enable-google-style t
