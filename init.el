@@ -150,8 +150,7 @@ values."
                       version-control-global-margin t
                       version-control-diff-tool (if (display-graphic-p)
                                                     'diff-hl
-                                                  'git-gutter+)
-                      version-control-diff-side 'left)
+                                                  'git-gutter+))
      ;; Tags
      gtags
      ;; Themes
