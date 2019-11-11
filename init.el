@@ -205,7 +205,8 @@ values."
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
-   '((competitive-programming-snippets :location local)
+   '((emacs-atcoder-tools :location local)
+     (competitive-programming-snippets :location local)
      flycheck-popup-tip
      (jest-snippets :location local)
      (maven-search :location (recipe :fetcher github
@@ -900,6 +901,9 @@ before packages are loaded."
                                                        (cdr template))
                                                #'yatemplate-expand-yas-buffer)))
                              file-templates)))
+
+  ;; Competitive Programming
+  (require 'atcoder-tools)
   )
 
 (setq custom-file (concat spacemacs-cache-directory ".my-custom-settings"))
