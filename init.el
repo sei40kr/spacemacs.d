@@ -153,8 +153,6 @@ values."
                       version-control-diff-tool (if (display-graphic-p)
                                                     'diff-hl
                                                   'git-gutter+))
-     ;; Tags
-     gtags
      ;; Themes
      colors
      themes-megapack
@@ -755,7 +753,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
   ;; perl5
   (setq cperl-mode-abbrev-table '())
-  (add-hook 'cperl-mode-hook #'spacemacs/ggtags-mode-enable)
 
   ;; plantuml
   (let* ((plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar"))
