@@ -734,7 +734,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
   ;; neotree
   (setq neo-theme (if (display-graphic-p) 'icons 'ascii)
-        neo-force-change-root t
+        neo-autorefresh t
         neo-confirm-create-directory #'off-p
         neo-confirm-create-file #'off-p
         neo-confirm-delete-directory-recursively #'off-p
