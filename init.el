@@ -139,7 +139,7 @@ values."
      yaml
      ;; Readers
      (deft :variables
-           deft-directory "~/Google ドライブ/notes")
+           deft-directory "~/Dropbox/deft")
      ;; Music
      ;; Operating systems
      osx
