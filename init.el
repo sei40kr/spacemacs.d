@@ -212,7 +212,6 @@ values."
                                      :repo "syohex/emacs-maven-search"))
      (perl-refactoring :location (recipe :fetcher github
                                          :repo "syohex/emacs-perl-refactoring"))
-     quickrun
      (rails-snippets :location local)
      (react-snippets :location local)
      (redux-snippets :location local))
@@ -780,22 +779,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
                   (require 'flycheck)
                   (add-to-list 'flycheck-disabled-checkers 'python-mypy))))
 
-  ;; quickrun
-  (setq quickrun-focus-p nil
-        quickrun-option-shebang t)
-  (eval-after-load 'evil
-    '(evil-define-key 'normal quickrun--mode-map "q" #'quit-window))
-  (eval-after-load 'golden-ratio
-    '(push "*quickrun*" golden-ratio-exclude-buffer-names))
-  (eval-after-load 'popwin
-    '(push '("*quickrun*"
-             :dedicated t
-             :position bottom
-             :stick t
-             :noselect nil
-             :height 0.4)
-           popwin:special-display-config))
-
   ;; ruby
   (setq
    ;; inf-ruby
@@ -865,12 +848,6 @@ before packages are loaded."
 
   ;; flycheck
   (require 'flycheck-popup-tip)
-
-  ;; quickrun
-  (spacemacs/declare-prefix "cq" "quickrun")
-  (spacemacs/set-leader-keys
-    "cqq" #'quickrun
-    "cqa" #'quickrun-with-arg)
 
   ;; yasnippet snippets
   (require 'competitive-programming-snippets)
