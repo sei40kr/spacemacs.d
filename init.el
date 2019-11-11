@@ -729,6 +729,10 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
     (define-key transient-edit-map   (kbd "<escape>") #'transient-quit-one)
     (define-key transient-sticky-map (kbd "<escape>") #'transient-quit-seq))
 
+  ;; markdown
+  (setq markdown-header-scaling t)
+  (spacemacs/add-to-hooks #'writeroom-mode '(markdown-mode-hook gfm-mode-hook))
+
   ;; neotree
   (setq neo-theme (if (display-graphic-p) 'icons 'ascii)
         neo-force-change-root t
@@ -746,6 +750,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
         org-export-preserve-breaks t
         ;; org-re-reveal
         org-re-reveal-root (concat (getenv "HOME") "/org/reveal-js"))
+  (add-hook 'org-mode-hook #'writeroom-mode)
 
   ;; perl5
   (setq cperl-mode-abbrev-table '())
