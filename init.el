@@ -224,7 +224,8 @@ values."
                                     company-plsense
                                     ddskk
                                     migemo
-                                    pangu-spacing)
+                                    pangu-spacing
+                                    yatemplate)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -807,11 +808,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 # key: ${2:${1:$(yas--key-from-desc yas-text)}}
 # --
 
-$0")
-
-  ;; yatemplate
-  (setq auto-insert-query nil
-        auto-save-default nil))
+$0"))
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
@@ -858,7 +855,52 @@ before packages are loaded."
 
   ;; Fix frame transparency
   (spacemacs/enable-transparency)
-  (add-hook 'after-make-frame-functions #'spacemacs/enable-transparency))
+  (add-hook 'after-make-frame-functions #'spacemacs/enable-transparency)
+
+  ;; File Templates
+  (defun yatemplate-expand-yas-buffer ()
+    "Expand the whole buffer with `yas-expand-snippet'."
+    (require 'yasnippet)
+    (yas-expand-snippet (buffer-string) (point-min) (point-max)))
+  (let* ((file-templates
+          '(
+            (c-mode                      . "template.c")
+            (c++-mode                    . "template.cpp")
+            (crystal-mode                . "template.cr")
+            (css-mode                    . "template.css")
+            (scss-mode                   . "template.scss")
+            (dockerfile-mode             . "_Dockerfile")
+            (editorconfig-conf-mode      . "template.editorconfig")
+            (haskell-mode                . "template.hs")
+            (java-mode                   . "template.java")
+            (kotlin-mode                 . "template.kt")
+            (perl-mode                   . "perl5-template.pl")
+            (cperl-mode                  . "perl5-template.pl")
+            ("\\`setup\\.py\\'"          . "_setup.py")
+            (python-mode                 . "template.py")
+            (ruby-mode                   . "template.rb")
+            (enh-ruby-mode               . "template.rb")
+            (rust-mode                   . "template.rs")
+            (scala-mode                  . "template.scala")
+            ("\\.bash\\'"                . "template.bash")
+            ("\\.zsh\\'"                 . "template.zsh")
+            (sh-mode                     . "template.sh")
+            (fish-mode                   . "template.fish")
+            ("\\-service\\.ya?ml\\'"     . "kubernetes-service.yml")
+            ("\\-volumeclaim\\.ya?ml\\'" . "kubernetes-volumeclaim.yml")
+            ("\\`\\.travis\\.ya?ml\\'"   . "_travis.yml")
+            (yaml-mode                   . "template.yml")
+            )))
+    (setq auto-insert-query nil
+          auto-insert-alist (mapcar
+                             #'(lambda (template)
+                                 (cons (car template)
+                                       (vector (concat dotspacemacs-directory
+                                                       "templates/"
+                                                       (cdr template))
+                                               #'yatemplate-expand-yas-buffer)))
+                             file-templates)))
+  )
 
 (setq custom-file (concat spacemacs-cache-directory ".my-custom-settings"))
 ;; Do not write anything past this comment. This is where Emacs will
