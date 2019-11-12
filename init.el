@@ -657,7 +657,8 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
         tooltip-short-delay 0.1)
 
   ;; go
-  (setq gofmt-command "goimports"
+  (setq go-backend 'lsp
+        gofmt-command "goimports"
         gofmt-show-errors 'echo
         godoc-at-point-function #'godoc-gogetdoc)
   (add-hook 'go-mode-hook
