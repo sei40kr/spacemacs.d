@@ -172,8 +172,10 @@ values."
      import-js
      ipython-notebook
      (lsp :variables
-          lsp-navigation 'simple
           lsp-ui-remap-xref-keybindings t
+          lsp-navigation 'peek
+          lsp-prefer-flymake nil
+          lsp-ui-doc-enable nil
           lsp-ui-sideline-enable nil)
      nginx
      (node :variables node-add-modules-path t)
@@ -703,9 +705,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
        (add-to-list 'flycheck-disabled-checkers 'javascript-jshint)
        (add-to-list 'flycheck-disabled-checkers 'javascript-standard))
    '(js2-mode-hook rjsx-mode-hook))
-
-  ;; lsp
-  (setq lsp-prefer-flymake :none)
 
   ;; magit
   (setq magit-refresh-status-buffer nil
