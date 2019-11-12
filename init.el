@@ -902,6 +902,13 @@ before packages are loaded."
 
   ;; Competitive Programming
   (require 'atcoder-tools)
+
+  ;; Themes
+  (setq doom-themes-neotree-project-size 1.0
+        doom-themes-neotree-folder-size  1.0
+        doom-themes-neotree-chevron-size 0.8)
+  (doom-themes-neotree-config)
+  (doom-themes-org-config)
   )
 
 (setq custom-file (concat spacemacs-cache-directory ".my-custom-settings"))
