@@ -827,16 +827,25 @@ Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (spacemacs/toggle-camel-case-motion-globally-on)
 
-  ;; evil
-  (define-key key-translation-map (kbd "C-h") (kbd "<DEL>"))
   (which-key-define-key-recursively global-map [escape] #'ignore)
   (which-key-define-key-recursively evil-emacs-state-map [escape] #'ignore)
-  (eval-after-load 'clean-aindent-mode
-    '(bind-key (kbd "C-w") #'clean-aindent--bsunindent))
-  (eval-after-load 'company
-    '(bind-key (kbd "C-w") nil company-active-map))
-  (eval-after-load 'helm
-    '(bind-key (kbd "C-w") #'backward-kill-word helm-map))
+
+  ;; evil
+  (global-set-key (kbd "C-h") #'delete-backward-char)
+  (global-set-key (kbd "C-w") #'backword-kill-word)
+  (with-eval-after-load 'clean-aindent-mode
+    (bind-key (kbd "C-w") #'clean-aindent--bsunindent))
+  (with-eval-after-load 'evil-ex
+    (bind-key (kbd "C-h") #'evil-ex-delete-backward-char evil-ex-search-keymap))
+  (with-eval-after-load 'company
+    (bind-key (kbd "C-h") nil company-active-map)
+    (bind-key (kbd "C-w") nil company-active-map))
+  (with-eval-after-load 'helm
+    (bind-key (kbd "C-w") #'backward-kill-word helm-map))
+  (with-eval-after-load 'elisp-mode
+    (bind-key (kbd "C-h") #'backward-delete-char-untabify emacs-lisp-mode-map))
+  (with-eval-after-load 'org-mode
+    (bind-key (kbd "C-h") #'org-delete-backward-char org-mode-map))
 
   ;; evil-mc
   (add-hook 'prog-mode-hook #'turn-on-evil-mc-mode)
