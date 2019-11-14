@@ -640,6 +640,9 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (custom/evil-init)
   (custom/docsets-init)
 
+  ;; Programming
+  (add-hook 'prog-mode-hook #'spacemacs/toggle-fill-column-indicator-on)
+
   ;; built-ins
   (setq create-lockfiles nil
         select-enable-clipboard nil)
