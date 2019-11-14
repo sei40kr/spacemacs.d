@@ -87,9 +87,9 @@ values."
      emacs-lisp
      (ess :variables ess-disable-underscore-assign t)
      (go :variables
+         go-backend 'lsp
          go-format-before-save t
-         go-tab-width 4
-         go-use-test-args "-race -timeout 10s")
+         go-tab-width 4)
      (haskell :variables
               haskell-completion-backend 'intero
               haskell-enable-hindent t)
@@ -139,7 +139,7 @@ values."
      yaml
      ;; Readers
      (deft :variables
-           deft-directory "~/Dropbox/deft")
+       deft-directory "~/Dropbox/deft")
      ;; Music
      ;; Operating systems
      osx
@@ -152,7 +152,8 @@ values."
                       version-control-global-margin t
                       version-control-diff-tool (if (display-graphic-p)
                                                     'diff-hl
-                                                  'git-gutter+))
+                                                  'git-gutter+)
+                      version-control-diff-side 'right)
      ;; Themes
      colors
      themes-megapack
@@ -207,18 +208,16 @@ values."
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
-   '((emacs-atcoder-tools :location local)
-     (competitive-programming-snippets :location local)
+   '(
      flycheck-popup-tip
-     (jest-snippets :location local)
      (helm-gitignore :location local)
-     (maven-search :location (recipe :fetcher github
-                                     :repo "syohex/emacs-maven-search"))
-     (perl-refactoring :location (recipe :fetcher github
-                                         :repo "syohex/emacs-perl-refactoring"))
      (rails-snippets :location local)
      (react-snippets :location local)
-     (redux-snippets :location local))
+     (redux-snippets :location local)
+     (jest-snippets :location local)
+     (competitive-programming-snippets :location local)
+     (emacs-atcoder-tools :location local)
+     )
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -603,11 +602,6 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil)
    dotspacemacs-pretty-docs nil))
 
-(load (concat dotspacemacs-directory "functions"))
-(dolist (item '("dash"
-                "typescript"))
-  (load (format "%smy-%s" dotspacemacs-directory item)))
-
 (defun dotspacemacs/user-env ()
   "Environment variables setup.
 This function defines the environment variables for your Emacs session. By
@@ -616,14 +610,35 @@ variables declared in `~/.spacemacs.env' or `~/.spacemacs.d/.spacemacs.env'.
 See the header of this file for more information."
   )
 
+(defun custom//load-all ()
+  (dolist (file-name '("functions"
+                       "file-template"
+                       "flycheck-custom"
+                       "evil-custom"
+                       "docsets"
+                       "neotree-custom"
+                       "theme-custom"))
+    (load (concat dotspacemacs-directory file-name))))
+
+(defun custom//require-all ()
+  (require 'rails-snippets)
+  (require 'react-snippets)
+  (require 'redux-snippets)
+  (require 'jest-snippets)
+  (require 'competitive-programming-snippets)
+  (require 'atcoder-tools))
+
 (defun dotspacemacs/user-init ()
   "Initialization for user code:
 This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (my/init-dash)
-  (my/init-typescript)
+  (custom//load-all)
+
+  (custom/flycheck-init)
+  (custom/evil-init)
+  (custom/docsets-init)
 
   ;; built-ins
   (setq create-lockfiles nil
@@ -635,46 +650,12 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; emmet-mode
   (setq emmet-self-closing-tag-style " /")
 
-  ;; evil
-  (setq evil-want-C-i-jump t
-        evil-want-C-u-scroll t
-        evil-want-Y-yank-to-eol t
-        evil-escape-key-sequence "jk")
-
-  ;; diff-hl
-  (setq diff-hl-side 'right)
-
-  ;; flycheck
-  (setq flycheck-check-syntax-automatically '(save mode-enabled)
-        flycheck-display-errors-delay 0.3
-        ;; flycheck-popup-tip
-        flycheck-pos-tip-display-errors-tty-function #'flycheck-popup-tip-show-popup
-        flycheck-popup-tip-error-prefix "* "
-        ;; flycheck-pos-tip
-        flycheck-pos-tip-timeout 999
-        ;; Prevent hiding tooltips
-        tooltip-delay 0.3
-        tooltip-hide-delay 999
-        tooltip-short-delay 0.1)
-
   ;; go
-  (setq go-backend 'lsp
-        gofmt-command "goimports"
-        gofmt-show-errors 'echo
-        godoc-at-point-function #'godoc-gogetdoc)
-  (add-hook 'go-mode-hook
-            #'(lambda ()
-                (require 'flycheck)
-                (add-to-list 'flycheck-disabled-checkers 'gometalinter)
-                (add-to-list 'flycheck-disabled-checkers 'go-gofmt)
-                (add-to-list 'flycheck-disabled-checkers 'go-test)
-                (add-to-list 'flycheck-disabled-checkers 'go-megacheck)))
+  (setq gofmt-command "goimports"
+        gofmt-show-errors 'echo)
 
   ;; helm
   (setq helm-mini-default-sources '(helm-source-buffers-list))
-
-  ;; hybrid
-  (setq hybrid-style-use-evil-search-module t)
 
   ;; java
   (let* ((lombok-path (concat dotspacemacs-directory "/lombok-1.18.6.jar")))
@@ -701,12 +682,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; javascript
   (setq js2-mode-show-parse-errors nil
         js2-mode-show-strict-warnings nil)
-  (spacemacs/add-to-hooks
-   #'(lambda ()
-       (require 'flycheck)
-       (add-to-list 'flycheck-disabled-checkers 'javascript-jshint)
-       (add-to-list 'flycheck-disabled-checkers 'javascript-standard))
-   '(js2-mode-hook rjsx-mode-hook))
 
   ;; magit
   (setq magit-refresh-status-buffer nil
@@ -732,16 +707,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
   ;; markdown
   (setq markdown-header-scaling t)
-
-  ;; neotree
-  (setq neo-theme (if (display-graphic-p) 'icons 'ascii)
-        neo-mode-line-type 'none
-        neo-autorefresh t
-        neo-confirm-create-directory #'off-p
-        neo-confirm-create-file #'off-p
-        neo-confirm-delete-directory-recursively #'off-p
-        neo-confirm-delete-file #'y-or-n-p
-        neo-confirm-kill-buffers-for-files-in-directory #'off-p)
 
   ;; org
   (setq org-confirm-babel-evaluate nil
@@ -774,29 +739,12 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
                (when (neo-global--window-exists-p)
                  (save-selected-window (neotree-refresh))))))
 
-  ;; python
-  (add-hook 'python-mode-hook
-            #'(lambda ()
-                (when (eq (spacemacs//python-backend) 'lsp)
-                  (require 'flycheck)
-                  (add-to-list 'flycheck-disabled-checkers 'python-mypy))))
-
   ;; ruby
   (setq
    ;; inf-ruby
    inf-ruby-default-implementation "pry"
    ;; rubocopfmt
    rubocopfmt-show-errors 'echo)
-
-  ;; rust
-  (add-hook 'rust-mode-hook
-            #'(lambda ()
-                (require 'flycheck)
-                (add-to-list 'flycheck-disabled-checkers 'rust-cargo)))
-
-  ;; themes
-  (setq doom-modeline-buffer-file-name-style #'truncate-upto-root
-        fci-rule-color "#444444")
 
   ;; vc-hooks
   (setq vc-follow-symlinks t)
@@ -809,17 +757,22 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 # key: ${2:${1:$(yas--key-from-desc yas-text)}}
 # --
 
-$0"))
+$0")
+
+  ;; Perspective
+  (setq persp-kill-foreign-buffer-behaviour 'kill
+        persp-remove-buffers-from-nil-persp-behaviour nil)
+  )
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
-  (load (concat dotspacemacs-directory "functions"))
-  (dolist (item '("dash"
-                  "typescript"))
-    (load (format "%smy-%s" dotspacemacs-directory item))))
+  (custom//require-all)
+
+  (custom//load-all)
+  )
 
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
@@ -827,101 +780,19 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (spacemacs/toggle-camel-case-motion-globally-on)
+  (custom//require-all)
+  (require 'dash)
 
-  (which-key-define-key-recursively global-map [escape] #'ignore)
-  (which-key-define-key-recursively evil-emacs-state-map [escape] #'ignore)
-
-  ;; evil
-  (global-set-key (kbd "C-h") #'delete-backward-char)
-  (global-set-key (kbd "C-w") #'backword-kill-word)
-  (with-eval-after-load 'clean-aindent-mode
-    (bind-key (kbd "C-w") #'clean-aindent--bsunindent))
-  (with-eval-after-load 'evil-ex
-    (bind-key (kbd "C-h") #'evil-ex-delete-backward-char evil-ex-search-keymap))
-  (with-eval-after-load 'company
-    (bind-key (kbd "C-h") nil company-active-map)
-    (bind-key (kbd "C-w") nil company-active-map))
-  (with-eval-after-load 'helm
-    (bind-key (kbd "C-w") #'backward-kill-word helm-map))
-  (with-eval-after-load 'elisp-mode
-    (bind-key (kbd "C-h") #'backward-delete-char-untabify emacs-lisp-mode-map))
-  (with-eval-after-load 'org-mode
-    (bind-key (kbd "C-h") #'org-delete-backward-char org-mode-map))
-
-  ;; evil-mc
-  (add-hook 'prog-mode-hook #'turn-on-evil-mc-mode)
-  (add-hook 'text-mode-hook #'turn-on-evil-mc-mode)
-
-  ;; flycheck
-  (require 'flycheck-popup-tip)
-
-  ;; yasnippet snippets
-  (require 'competitive-programming-snippets)
-  (require 'jest-snippets)
-  (require 'rails-snippets)
-  (require 'react-snippets)
-  (require 'redux-snippets)
+  (custom/evil-config)
+  (custom/file-template-config)
+  (custom/neotree-config)
+  (custom/theme-config)
 
   ;; Fix frame transparency
   (spacemacs/enable-transparency)
   (add-hook 'after-make-frame-functions #'spacemacs/enable-transparency)
-
-  ;; File Templates
-  (defun yatemplate-expand-yas-buffer ()
-    "Expand the whole buffer with `yas-expand-snippet'."
-    (require 'yasnippet)
-    (yas-expand-snippet (buffer-string) (point-min) (point-max)))
-  (let* ((file-templates
-          '(
-            (c-mode                      . "template.c")
-            (c++-mode                    . "template.cpp")
-            (crystal-mode                . "template.cr")
-            (css-mode                    . "template.css")
-            (scss-mode                   . "template.scss")
-            (dockerfile-mode             . "_Dockerfile")
-            (editorconfig-conf-mode      . "template.editorconfig")
-            (haskell-mode                . "template.hs")
-            (java-mode                   . "template.java")
-            (kotlin-mode                 . "template.kt")
-            (perl-mode                   . "perl5-template.pl")
-            (cperl-mode                  . "perl5-template.pl")
-            ("\\`setup\\.py\\'"          . "_setup.py")
-            (python-mode                 . "template.py")
-            (ruby-mode                   . "template.rb")
-            (enh-ruby-mode               . "template.rb")
-            (rust-mode                   . "template.rs")
-            (scala-mode                  . "template.scala")
-            ("\\.bash\\'"                . "template.bash")
-            ("\\.zsh\\'"                 . "template.zsh")
-            (sh-mode                     . "template.sh")
-            (fish-mode                   . "template.fish")
-            ("\\-service\\.ya?ml\\'"     . "kubernetes-service.yml")
-            ("\\-volumeclaim\\.ya?ml\\'" . "kubernetes-volumeclaim.yml")
-            ("\\`\\.travis\\.ya?ml\\'"   . "_travis.yml")
-            (yaml-mode                   . "template.yml")
-            )))
-    (setq auto-insert-query nil
-          auto-insert-alist (mapcar
-                             #'(lambda (template)
-                                 (cons (car template)
-                                       (vector (concat dotspacemacs-directory
-                                                       "templates/"
-                                                       (cdr template))
-                                               #'yatemplate-expand-yas-buffer)))
-                             file-templates)))
-
-  ;; Competitive Programming
-  (require 'atcoder-tools)
-
-  ;; Themes
-  (setq doom-themes-neotree-project-size 1.0
-        doom-themes-neotree-folder-size  1.0
-        doom-themes-neotree-chevron-size 0.8)
-  (doom-themes-neotree-config)
-  (doom-themes-org-config)
   )
 
-(setq custom-file (concat spacemacs-cache-directory ".my-custom-settings"))
+(setq custom-file (concat spacemacs-cache-directory ".custom-settings"))
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.

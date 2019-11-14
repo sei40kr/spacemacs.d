@@ -1,0 +1,33 @@
+;; -*- lexical-binding: t -*-
+
+(defvar custom--dash-docsets
+  '(
+    ((c-mode-hook) . ("C" "Man_Pages"))
+    ((c++-mode-hook) . ("C++" "C" "Boost" "Man_Pages"))
+    ((cmake-mode-hook) . ("CMake"))
+    ((rust-mode-hook) . ("Rust"))
+    ((go-mode-hook) . ("Go"))
+    ((haskell-mode-hook) . ("Haskell"))
+    ((java-mode-hook) . ("Java_SE11" "Spring_Framework" "Play_Java" "Java_EE8"))
+    ((scala-mode-hook) . ("Scala" "Akka" "Play_Scala"))
+    ((python-mode-hook) . ("Python_3" "Python_2" "Django" "Flask" "MatPlotLib" "NumPy" "Pandas"))
+    ((ruby-mode-hook enh-ruby-mode-hook) . ("Ruby" "Ruby_on_Rails_5"))
+    ((cperl-mode-hook) . ("Perl"))
+    ((html-mode-hook) . ("HTML" "Bootstrap_4" "Semantic_UI" "Foundation"))
+    ((css-mode-hook) . ("CSS"))
+    ((less-css-mode-hook) . ("Less" "CSS"))
+    ((sass-mode-hook) . ("Sass" "CSS"))
+    ((js2-mode-hook) . ("JavaScript" "jQuery" "MomentJS" "Lo-Dash"))
+    ((rjsx-mode-hook) . ("JavaScript" "React" "AngularJS" "VueJS" "MomentJS" "Lo-Dash" "HTML"))
+    ((typescript-mode-hook) . ("TypeScript" "jQuery" "MomentJS" "Lo-Dash"))
+    ((typescript-tsx-mode-hook) . ("TypeScript" "React" "AngularJS" "VueJS" "MomentJS" "Lo-Dash" "HTML"))
+    ((sql-mode-hook) . ("MySQL" "PostgreSQL" "SQLite"))
+    ))
+
+(defun custom/docsets-init ()
+  (dolist (hooks-and-docsets custom--dash-docsets)
+    (let* ((hooks (car hooks-and-docsets))
+           (docsets (cdr hooks-and-docsets)))
+      (spacemacs/add-to-hooks #'(lambda ()
+                                  (setq-local helm-dash-docsets docsets))
+                              hooks))))
