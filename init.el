@@ -211,6 +211,7 @@ values."
      (competitive-programming-snippets :location local)
      flycheck-popup-tip
      (jest-snippets :location local)
+     (helm-gitignore :location local)
      (maven-search :location (recipe :fetcher github
                                      :repo "syohex/emacs-maven-search"))
      (perl-refactoring :location (recipe :fetcher github
