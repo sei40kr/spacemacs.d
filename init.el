@@ -733,15 +733,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; prettier
   (setq prettier-js-show-errors 'echo)
 
-  ;; projectile
-  (setq projectile-git-submodule-command nil)
-  (eval-after-load 'helm-projectile
-    '(setq projectile-switch-project-action
-           #'(lambda ()
-               (projectile-dired)
-               (when (neo-global--window-exists-p)
-                 (save-selected-window (neotree-refresh))))))
-
   ;; ruby
   (setq
    ;; inf-ruby
@@ -762,8 +753,10 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
 $0")
 
-  ;; Perspective
-  (setq persp-kill-foreign-buffer-behaviour 'kill
+  ;; Projectile & Perspective
+  (setq projectile-git-submodule-command nil
+        projectile-switch-project-action #'projectile-dired
+        persp-kill-foreign-buffer-behaviour 'kill
         persp-remove-buffers-from-nil-persp-behaviour nil)
   )
 
