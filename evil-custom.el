@@ -38,7 +38,8 @@
   (defun custom/evil-escape-everything ()
     (interactive)
     (spacemacs/evil-search-clear-highlight)
-    (when (bound-and-true-p evil-mc-mode)
+    (when (and (bound-and-true-p evil-mc-mode)
+               (not (eq evil-state 'operator)))
       (evil-mc-undo-all-cursors)))
   (with-eval-after-load 'evil-core
     (evil-global-set-key 'normal
