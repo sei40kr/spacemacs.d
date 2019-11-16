@@ -641,7 +641,8 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (custom/docsets-init)
 
   ;; Programming
-  (add-hook 'prog-mode-hook #'spacemacs/toggle-fill-column-indicator-on)
+  (spacemacs/add-to-hooks #'spacemacs/toggle-fill-column-indicator-on
+                          '(prog-mode-hook git-commit-mode-hook))
 
   ;; built-ins
   (setq create-lockfiles nil
