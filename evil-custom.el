@@ -31,6 +31,8 @@
     (bind-key (kbd "C-h") #'backward-delete-char-untabify emacs-lisp-mode-map))
   (with-eval-after-load 'org-mode
     (bind-key (kbd "C-h") #'org-delete-backward-char org-mode-map))
+  (with-eval-after-load 'vterm
+    (bind-key (kbd "C-h")  #'vterm--self-insert vterm-mode-map))
 
   ;; evil-mc
   (add-hook 'prog-mode-hook #'turn-on-evil-mc-mode)
