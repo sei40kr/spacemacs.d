@@ -754,9 +754,10 @@ $0")
 
   ;; Projectile & Perspective
   (setq projectile-git-submodule-command nil
-        projectile-switch-project-action #'projectile-dired
         persp-kill-foreign-buffer-behaviour 'kill
         persp-remove-buffers-from-nil-persp-behaviour nil)
+  (with-eval-after-load 'projectile
+    (setq projectile-switch-project-action #'projectile-dired))
   )
 
 (defun dotspacemacs/user-load ()
