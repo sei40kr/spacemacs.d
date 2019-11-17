@@ -131,7 +131,7 @@ values."
      sql
      (typescript :variables
                  typescript-fmt-tool 'prettier
-                 typescript-backend 'tide
+                 typescript-backend 'lsp
                  typescript-linter 'eslint
                  typescript-lsp-linter nil)
      vimscript
