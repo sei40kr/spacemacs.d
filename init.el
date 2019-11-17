@@ -174,8 +174,7 @@ values."
           lsp-ui-remap-xref-keybindings t
           lsp-navigation 'peek
           lsp-prefer-flymake nil
-          lsp-ui-doc-enable nil
-          lsp-ui-sideline-enable nil)
+          lsp-ui-doc-enable nil)
      nginx
      (node :variables node-add-modules-path t)
      pandoc
