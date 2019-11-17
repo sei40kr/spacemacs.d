@@ -101,7 +101,6 @@ values."
      (javascript :variables
                  javascript-fmt-tool 'prettier
                  javascript-backend 'lsp
-                 javascript-import-tool 'import-js
                  javascript-repl 'nodejs
                  javascript-lsp-linter nil)
      (json :variables json-fmt-tool 'prettier)
@@ -170,7 +169,6 @@ values."
      debug
      docker
      imenu-list
-     import-js
      ipython-notebook
      (lsp :variables
           lsp-ui-remap-xref-keybindings t
