@@ -91,7 +91,11 @@
           (file-node-closed . treemacs-toggle-node)
           (tag-node-open    . treemacs-toggle-node)
           (tag-node-closed  . treemacs-toggle-node)
-          (tag-node-leaf    . custom//treemacs-no-actions)))
+          (tag-node-leaf    . custom//treemacs-no-actions))
+        treemacs-recenter-after-file-follow 'always
+        treemacs-recenter-after-tag-follow  'always
+        treemacs-show-cursor t)
+
   (with-eval-after-load 'treemacs
     (evil-define-key 'treemacs treemacs-mode-map
       (kbd "K")  #'custom/treemacs-select-up
