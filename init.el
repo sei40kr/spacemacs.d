@@ -656,27 +656,22 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; helm
   (setq helm-mini-default-sources '(helm-source-buffers-list))
 
-  ;; java
-  (let* ((lombok-path (concat dotspacemacs-directory "/lombok-1.18.6.jar")))
-    (setq lsp-java-vmargs (list "-noverify"
-                                "-Xmx1G"
-                                "-XX:+UseG1GC"
-                                "-XX:+UseStringDeduplication"
-                                (concat "-javaagent:" lombok-path)
-                                (concat "-Xbootclasspath/a:" lombok-path))
-          lsp-java-save-action-organize-imports t
-          lsp-java-autobuild-enabled nil
-          lsp-java-format-enabled t
-          lsp-java-format-settings-url "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml"
-          lsp-java-import-maven-enabled t
-          lsp-java-progress-report nil
-          lsp-java-completion-guess-arguments t
-          lsp-java-code-generation-hash-code-equals-use-java7objects t
-          lsp-java-code-generation-hash-code-equals-use-instanceof t
-          lsp-java-code-generation-use-blocks t
-          lsp-java-code-generation-generate-comments t
-          lsp-java-code-generation-to-string-code-style "STRING_BUILDER_CHAINED"))
-  (add-hook 'java-mode-hook #'lsp-java-boot-lens-mode)
+  ;; Java
+  (setq lsp-java-import-gradle-enabled nil
+        lsp-java-save-action-organize-imports t
+        lsp-java-autobuild-enabled nil
+        lsp-java-format-settings-url "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml"
+        lsp-java-code-generation-hash-code-equals-use-java7objects t
+        lsp-java-code-generation-hash-code-equals-use-instanceof t
+        lsp-java-code-generation-use-blocks t
+        lsp-java-code-generation-generate-comments t
+        lsp-java-code-generation-to-string-code-style "STRING_BUILDER_CHAINED")
+  (with-eval-after-load 'lsp-java
+    (let* ((lombok-path (concat dotspacemacs-directory "/lombok-1.18.6.jar")))
+      (add-to-list 'lsp-java-vmargs (concat "-javaagent:" lombok-path) 'append)
+      (add-to-list 'lsp-java-vmargs
+                   (concat "-Xbootclasspath/a:" lombok-path)
+                   'append)))
 
   ;; javascript
   (setq js2-mode-show-parse-errors nil
