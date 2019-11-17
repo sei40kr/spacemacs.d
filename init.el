@@ -67,7 +67,7 @@ values."
      react
      ruby-on-rails
      ;; Filetree
-     neotree
+     treemacs
      ;; Fun
      ;; International support
      japanese
@@ -616,7 +616,7 @@ See the header of this file for more information."
                        "flycheck-custom"
                        "evil-custom"
                        "docsets"
-                       "neotree-custom"
+                       "treemacs-custom"
                        "theme-custom"))
     (load (concat dotspacemacs-directory file-name))))
 
@@ -782,7 +782,7 @@ before packages are loaded."
 
   (custom/evil-config)
   (custom/file-template-config)
-  (custom/neotree-config)
+  (custom/treemacs-config)
   (custom/theme-config)
 
   ;; Fix frame transparency

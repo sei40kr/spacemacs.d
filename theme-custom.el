@@ -12,5 +12,9 @@
     (setq lsp-ui-imenu-colors (list (nth n cyan) (nth n green))))
   (with-eval-after-load 'org-mode
     (doom-themes-org-config))
-  (with-eval-after-load 'neotree
-    (doom-themes-neotree-config)))
+  ;; (with-eval-after-load 'neotree
+  ;;   (doom-themes-neotree-config))
+  (with-eval-after-load 'treemacs
+    (setq doom-themes-treemacs-theme "doom-colors"
+          doom-themes-treemacs-enable-variable-pitch nil)
+    (doom-themes-treemacs-config)))
