@@ -9,6 +9,8 @@
     (scss-mode                   . "template.scss")
     (dockerfile-mode             . "_Dockerfile")
     (editorconfig-conf-mode      . "template.editorconfig")
+    ("_test\\.go\\'"             . "template_test.go")
+    (go-mode                     . "template.go")
     (haskell-mode                . "template.hs")
     (java-mode                   . "template.java")
     (kotlin-mode                 . "template.kt")
@@ -46,4 +48,5 @@
 
 (defun custom/file-template-config ()
   (setq auto-insert-query nil
-        auto-insert-alist (custom//file-template-auto-insert-alist)))
+        auto-insert-alist (custom//file-template-auto-insert-alist))
+  (auto-insert-mode 1))
