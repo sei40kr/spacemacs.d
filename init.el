@@ -134,7 +134,6 @@ values."
                  typescript-backend 'lsp
                  typescript-linter 'eslint
                  typescript-lsp-linter nil)
-     vimscript
      yaml
      ;; Readers
      (deft :variables
