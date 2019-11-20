@@ -686,7 +686,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
                                        ("~/.zplugin/plugins" . 1)
                                        ("~/.emacs.d" . 0)
                                        ("~/.spacemacs.d" . 0)
-                                       ("~/develop/workspace" . 1)
+                                       ("~/develop/workspace" . 2)
                                        (,(concat (getenv "GOPATH") "/src/github.com/sei40kr") . 1))
         magit-revision-insert-related-refs nil)
   (with-eval-after-load 'magit
