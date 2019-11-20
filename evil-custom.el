@@ -35,8 +35,6 @@
     (bind-key (kbd "C-h")  #'vterm--self-insert vterm-mode-map))
 
   ;; evil-mc
-  (add-hook 'prog-mode-hook #'turn-on-evil-mc-mode)
-  (add-hook 'text-mode-hook #'turn-on-evil-mc-mode)
   (defun custom/evil-escape-everything ()
     (interactive)
     (spacemacs/evil-search-clear-highlight)
