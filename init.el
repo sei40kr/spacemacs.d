@@ -67,7 +67,8 @@ values."
      react
      ruby-on-rails
      ;; Filetree
-     treemacs
+     (treemacs :variables
+               treemacs-lock-width t)
      ;; Fun
      ;; International support
      japanese
