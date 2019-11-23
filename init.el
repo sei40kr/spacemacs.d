@@ -140,6 +140,7 @@ values."
      ;; Readers
      (deft :variables
        deft-directory "~/Dropbox/deft")
+     elfeed
      ;; Music
      ;; Operating systems
      osx
@@ -611,6 +612,7 @@ See the header of this file for more information."
   (dolist (file-name '("functions"
                        "file-template"
                        "flycheck-custom"
+                       "elfeed-custom"
                        "evil-custom"
                        "docsets"
                        "treemacs-custom"
@@ -636,6 +638,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (custom/flycheck-init)
   (custom/evil-init)
   (custom/docsets-init)
+  (custom/elfeed-init)
 
   ;; Programming
   (spacemacs/add-to-hooks #'spacemacs/toggle-fill-column-indicator-on
