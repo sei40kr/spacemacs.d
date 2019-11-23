@@ -1,21 +1,19 @@
-<script>
-import Counter from "./components/counter.vue";
+<template>
+  <div class="example">{{ msg }}</div>
+</template>
 
+<script>
 export default {
   data() {
     return {
-      msg: "Hello from vue-loader!"
+      msg: "Hello world!"
     };
-  },
-
-  components: {
-    Counter,
   }
 };
 </script>
 
-<style lang="css" scoped>
-h1 {
-  display: inline;
+<style>
+.example {
+  color: red;
 }
 </style>
