@@ -128,6 +128,9 @@ values."
             scala-auto-start-backend t)
      (shell-scripts :variables
                     shell-scripts-backend 'lsp)
+     (solidity :variables
+               solidity-flycheck-solc-checker-active t
+               solidity-flycheck-solium-checker-active t)
      sql
      (typescript :variables
                  typescript-fmt-tool 'prettier
