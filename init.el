@@ -84,7 +84,6 @@ values."
      (crystal :variables
               crystal-enable-auto-format t)
      csv
-     (dockerfile :variables dockerfile-backend 'lsp)
      emacs-lisp
      (ess :variables ess-disable-underscore-assign t)
      (go :variables
