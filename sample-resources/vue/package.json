@@ -1,0 +1,15 @@
+{
+  "name": "vue-sample-resource",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Seong Yong-ju",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^6.7.0",
+    "eslint-plugin-vue": "^6.0.1"
+  }
+}
