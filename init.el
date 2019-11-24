@@ -368,10 +368,16 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-colorize-cursor-according-to-state t
 
    ;; Default font or prioritized list of fonts.
-   dotspacemacs-default-font '("Input Mono"
-                               :size 19
-                               :weight normal
-                               :width normal)
+   dotspacemacs-default-font '(
+                               ("Source Code Pro Medium"
+                                :size 13.0
+                                :weight demibold
+                                :width normal)
+                               ("Source Han Mono Regular"
+                                :size 13.0
+                                :weight normal
+                                :width normal)
+                               )
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
