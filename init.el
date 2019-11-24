@@ -169,7 +169,6 @@ values."
                                       ('darwin "~/Library/Application Support/Dash/DocSets")
                                       ('gnu/linux "~/.local/share/Zeal/Zeal/docsets")
                                       (otherwise nil)))
-     debug
      docker
      imenu-list
      ipython-notebook
