@@ -61,7 +61,8 @@ values."
      (org :variables
           org-want-todo-bindings t
           org-enable-github-support t
-          org-enable-reveal-js-support t)
+          org-enable-reveal-js-support t
+          org-enable-sticky-header t)
      ;; E-mail
      ;; Framework
      react
