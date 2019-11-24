@@ -53,10 +53,6 @@ values."
                       auto-completion-enable-snippets-in-popup t
                       auto-completion-enable-help-tooltip t)
      helm
-     (templates :variables
-                templates-private-directory
-                (concat dotspacemacs-directory "templates")
-                templates-use-default-templates nil)
      ;; Emacs
      (org :variables
           org-want-todo-bindings t
