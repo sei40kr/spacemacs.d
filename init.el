@@ -617,6 +617,7 @@ See the header of this file for more information."
                        "elfeed-custom"
                        "evil-custom"
                        "docsets"
+                       "projectile-custom"
                        "treemacs-custom"
                        "theme-custom"))
     (load (concat dotspacemacs-directory file-name))))
@@ -639,6 +640,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
   (custom/flycheck-init)
   (custom/evil-init)
+  (custom/projectile-init)
   (custom/docsets-init)
   (custom/elfeed-init)
 
@@ -751,12 +753,9 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
 $0")
 
-  ;; Projectile & Perspective
-  (setq projectile-git-submodule-command nil
-        persp-kill-foreign-buffer-behaviour 'kill
+  ;; Perspective
+  (setq persp-kill-foreign-buffer-behaviour 'kill
         persp-remove-buffers-from-nil-persp-behaviour nil)
-  (with-eval-after-load 'projectile
-    (setq projectile-switch-project-action #'projectile-dired))
   )
 
 (defun dotspacemacs/user-load ()
