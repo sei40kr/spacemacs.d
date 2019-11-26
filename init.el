@@ -692,7 +692,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
                                  ("Version" 25 magit-repolist-column-version nil)
                                  ("Path" 99 magit-repolist-column-path nil))
         magit-repository-directories `(("~/.dotfiles" . 0)
-                                       ("~/.zplugin/plugins" . 1)
                                        ("~/.emacs.d" . 0)
                                        ("~/.spacemacs.d" . 0)
                                        ("~/develop/workspace" . 2)
