@@ -22,4 +22,10 @@
                   projectile-save-known-projects
                   projectile-merge-known-projects))
     (advice-add func
-                :override #'(lambda ()))))
+                :override #'(lambda ())))
+
+  (dolist (func '(helm-projectile-switch-project
+                  spacemacs/helm-persp-switch-project))
+    (advice-add func
+                :before #'(lambda (_)
+                            (custom//magit-repos-to-projectile-projects)))))
