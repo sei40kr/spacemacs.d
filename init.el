@@ -165,7 +165,8 @@ values."
                                       ('darwin "~/Library/Application Support/Dash/DocSets")
                                       ('gnu/linux "~/.local/share/Zeal/Zeal/docsets")
                                       (otherwise nil)))
-     docker
+     (docker :variables
+             docker-dockerfile-backend 'lsp)
      imenu-list
      ipython-notebook
      (lsp :variables
