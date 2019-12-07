@@ -776,8 +776,6 @@ before packages are loaded."
   (custom/treemacs-config)
   (custom/theme-config)
 
-  (spacemacs/toggle-golden-ratio-on)
-
   ;; Fix frame transparency
   (spacemacs/enable-transparency)
   (add-hook 'after-make-frame-functions #'spacemacs/enable-transparency)
