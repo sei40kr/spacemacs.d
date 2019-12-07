@@ -734,6 +734,11 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
    ;; rubocopfmt
    rubocopfmt-show-errors 'echo)
 
+  ;; Shell
+  (setq terminal-here-terminal-command (pcase system-type
+                                         ('darwin '("open" "-a" "Alacritty.app" "."))
+                                         ('gnu/linux '("alacritty" "--class" "Alacritty_terminalhere"))))
+
   ;; vc-hooks
   (setq vc-follow-symlinks t)
 
