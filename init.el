@@ -63,6 +63,7 @@ values."
      ;; Framework
      react
      ruby-on-rails
+     vue
      ;; Filetree
      (treemacs :variables
                treemacs-lock-width t)
