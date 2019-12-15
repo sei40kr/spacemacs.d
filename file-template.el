@@ -16,7 +16,7 @@
     (kotlin-mode                 . "template.kt")
     (perl-mode                   . "perl5-template.pl")
     (cperl-mode                  . "perl5-template.pl")
-    ("\\`setup\\.py\\'"          . "_setup.py")
+    ("/setup\\.py\\'"            . "_setup.py")
     (python-mode                 . "template.py")
     ("/\\.flake8\\'"             . "_flake8")
     (ruby-mode                   . "template.rb")
@@ -29,7 +29,7 @@
     (fish-mode                   . "template.fish")
     ("\\-service\\.ya?ml\\'"     . "kubernetes-service.yml")
     ("\\-volumeclaim\\.ya?ml\\'" . "kubernetes-volumeclaim.yml")
-    ("\\`\\.travis\\.ya?ml\\'"   . "_travis.yml")
+    ("/\\.travis\\.ya?ml\\'"     . "_travis.yml")
     (yaml-mode                   . "template.yml")
     ))
 
