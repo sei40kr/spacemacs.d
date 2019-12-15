@@ -111,7 +111,9 @@ values."
      perl6
      php
      plantuml
-     (python :variables python-backend 'lsp)
+     (python :variables
+             python-backend 'lsp
+             python-formatter 'black)
      (ruby :variables
            ruby-enable-enh-ruby-mode t
            ruby-version-manager nil
