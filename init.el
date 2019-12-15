@@ -741,7 +741,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; Shell
   (setq terminal-here-terminal-command (pcase system-type
                                          ('darwin '("open" "-a" "Alacritty.app" "."))
-                                         ('gnu/linux '("alacritty" "--class" "Alacritty_terminalhere"))))
+                                         ('gnu/linux '("alacritty"))))
 
   ;; vc-hooks
   (setq vc-follow-symlinks t)
