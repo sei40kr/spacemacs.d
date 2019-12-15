@@ -755,6 +755,10 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 # --
 
 $0")
+  (defun custom//turn-off-yas-auto-indent ()
+    (set (make-local-variable 'yas-indent-line) 'fixed))
+  (spacemacs/add-to-hooks #'custom//turn-off-yas-auto-indent
+                          '(haskell-mode-hook python-mode-hook sass-mode-hook))
 
   ;; Perspective
   (setq persp-kill-foreign-buffer-behaviour 'kill
