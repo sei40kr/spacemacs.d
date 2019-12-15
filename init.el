@@ -89,9 +89,7 @@ values."
          go-backend 'lsp
          go-format-before-save t
          go-tab-width 4)
-     (haskell :variables
-              haskell-completion-backend 'intero
-              haskell-enable-hindent t)
+     (haskell :variables haskell-completion-backend 'lsp)
      (html :variables
            less-enable-lsp t
            scss-enable-lsp t
