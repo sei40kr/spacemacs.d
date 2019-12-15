@@ -36,7 +36,8 @@
 (defun yatemplate-expand-yas-buffer ()
   "Expand the whole buffer with `yas-expand-snippet'."
   (require 'yasnippet)
-  (yas-expand-snippet (buffer-string) (point-min) (point-max)))
+  (let ((yas-indent-line 'fixed))
+    (yas-expand-snippet (buffer-string) (point-min) (point-max))))
 
 (defun custom//file-template-auto-insert-alist ()
   (mapcar #'(lambda (mode-and-file-name)
