@@ -8,7 +8,7 @@
     (css-mode                    . "template.css")
     (scss-mode                   . "template.scss")
     (dockerfile-mode             . "_Dockerfile")
-    (editorconfig-conf-mode      . "template.editorconfig")
+    (editorconfig-conf-mode      . "_editorconfig")
     ("_test\\.go\\'"             . "template_test.go")
     (go-mode                     . "template.go")
     (haskell-mode                . "template.hs")
