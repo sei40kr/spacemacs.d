@@ -39,13 +39,13 @@
   (yas-expand-snippet (buffer-string) (point-min) (point-max)))
 
 (defun custom//file-template-auto-insert-alist ()
-  (require 'dash)
-  (-map
-   (-lambda ((mode . file-name))
-     (cons mode
-           (vector (concat dotspacemacs-directory "templates/" file-name)
-                   #'yatemplate-expand-yas-buffer)))
-   custom--file-templates))
+  (mapcar #'(lambda (mode-and-file-name)
+              (let* ((mode (car mode-and-file-name))
+                     (file-name (cdr mode-and-file-name)))
+                (cons mode
+                      (vector (concat dotspacemacs-directory "templates/" file-name)
+                              #'yatemplate-expand-yas-buffer))))
+          custom--file-templates))
 
 (defun custom/file-template-config ()
   (setq auto-insert-query nil
