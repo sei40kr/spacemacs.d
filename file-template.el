@@ -18,6 +18,7 @@
     (cperl-mode                  . "perl5-template.pl")
     ("\\`setup\\.py\\'"          . "_setup.py")
     (python-mode                 . "template.py")
+    ("/\\.flake8\\'"             . "_flake8")
     (ruby-mode                   . "template.rb")
     (enh-ruby-mode               . "template.rb")
     (rust-mode                   . "template.rs")
