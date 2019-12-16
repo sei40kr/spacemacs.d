@@ -693,11 +693,6 @@ $0")
         js2-mode-show-parse-errors nil
         js2-mode-show-strict-warnings nil)
 
-  ;; Shell
-  (setq terminal-here-terminal-command (pcase system-type
-                                         ('darwin '("open" "-a" "Alacritty.app" "."))
-                                         ('gnu/linux '("alacritty"))))
-
   ;; Markdown
   (setq markdown-header-scaling t)
 
@@ -737,6 +732,11 @@ $0")
     (define-key transient-map        (kbd "<escape>") #'transient-quit-one)
     (define-key transient-edit-map   (kbd "<escape>") #'transient-quit-one)
     (define-key transient-sticky-map (kbd "<escape>") #'transient-quit-seq))
+
+  ;; Shell
+  (setq terminal-here-terminal-command (pcase system-type
+                                         ('darwin '("open" "-a" "Alacritty.app"))
+                                         ('gnu/linux '("alacritty"))))
 
   ;; Projectile
   (setq helm-source-projectile-files-and-dired-list '(helm-source-projectile-files-list)
