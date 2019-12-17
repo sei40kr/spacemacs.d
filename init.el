@@ -641,26 +641,27 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (custom/docsets-init)
   (custom/elfeed-init)
 
-  ;; Programming
-  (spacemacs/add-to-hooks #'spacemacs/toggle-fill-column-indicator-on
-                          '(prog-mode-hook git-commit-mode-hook))
-
   ;; built-ins
   (setq create-lockfiles nil
         select-enable-clipboard nil)
 
-  ;; avy
-  (setq avy-timeout-seconds 0.0)
+  ;; Auto-completion
+  (setq yas-new-snippet-default "\
+# -*- mode: snippet -*-
+# name: $1
+# contributor : Seong Yong-ju <sei40kr@gmail.com>
+# key: ${2:${1:$(yas--key-from-desc yas-text)}}
+# --
 
-  ;; emmet-mode
-  (setq emmet-self-closing-tag-style " /")
+$0")
+  (defun custom//turn-off-yas-auto-indent ()
+    (set (make-local-variable 'yas-indent-line) 'fixed))
+  (spacemacs/add-to-hooks #'custom//turn-off-yas-auto-indent
+                          '(haskell-mode-hook python-mode-hook sass-mode-hook))
 
-  ;; go
+  ;; Go
   (setq gofmt-command "goimports"
         gofmt-show-errors 'echo)
-
-  ;; helm
-  (setq helm-mini-default-sources '(helm-source-buffers-list))
 
   ;; Java
   (setq lsp-java-import-gradle-enabled nil
@@ -679,12 +680,45 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
                    (concat "-Xbootclasspath/a:" lombok-path)
                    'append)))
 
-  ;; javascript
-  (setq js2-mode-show-parse-errors nil
+  ;; Ruby
+  (setq rubocopfmt-show-errors 'echo)
+
+  ;; Perl
+  (setq cperl-mode-abbrev-table '())
+
+  ;; Web Frontend
+  (setq emmet-self-closing-tag-style " /"
+        prettier-js-show-errors 'echo
+        js2-mode-show-parse-errors nil
         js2-mode-show-strict-warnings nil)
 
-  ;; magit
-  (setq magit-refresh-status-buffer nil
+  ;; Shell
+  (setq terminal-here-terminal-command (pcase system-type
+                                         ('darwin '("open" "-a" "Alacritty.app" "."))
+                                         ('gnu/linux '("alacritty"))))
+
+  ;; Markdown
+  (setq markdown-header-scaling t)
+
+  ;; Org
+  (setq org-confirm-babel-evaluate nil
+        org-export-with-section-numbers nil
+        org-export-with-title t
+        org-export-with-toc nil
+        org-export-preserve-breaks t
+        ;; org-re-reveal
+        org-re-reveal-root (concat (getenv "HOME") "/org/reveal-js"))
+
+  ;; PlantUML
+  (let* ((plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar"))
+    (setq org-plantuml-jar-path plantuml-jar-path
+          plantuml-default-exec-mode 'jar
+          plantuml-jar-path plantuml-jar-path))
+  (add-to-list 'auto-mode-alist '("\\.pu\\'" . plantuml-mode))
+
+  ;; Version Control
+  (setq vc-follow-symlinks t
+        magit-refresh-status-buffer nil
         magit-repolist-columns '(("Name" 25 magit-repolist-column-ident nil)
                                  ("Version" 25 magit-repolist-column-version nil)
                                  ("Path" 99 magit-repolist-column-path nil))
@@ -697,71 +731,29 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (with-eval-after-load 'magit
     (remove-hook 'magit-refs-sections-hook 'magit-insert-tags)
     (remove-hook 'server-switch-hook 'magit-commit-diff))
-  ;; Allow to escape a key sequence with Esc
-  ;; cf https://github.com/syl20bnr/spacemacs/issues/11998
+  ;; allow to escape a key sequence with Esc
   (with-eval-after-load 'transient
     (define-key transient-map        (kbd "<escape>") #'transient-quit-one)
     (define-key transient-edit-map   (kbd "<escape>") #'transient-quit-one)
     (define-key transient-sticky-map (kbd "<escape>") #'transient-quit-seq))
 
-  ;; markdown
-  (setq markdown-header-scaling t)
-
-  ;; org
-  (setq org-confirm-babel-evaluate nil
-        org-export-with-section-numbers nil
-        org-export-with-title t
-        org-export-with-toc nil
-        org-export-preserve-breaks t
-        ;; org-re-reveal
-        org-re-reveal-root (concat (getenv "HOME") "/org/reveal-js"))
-
-  ;; perl5
-  (setq cperl-mode-abbrev-table '())
-
-  ;; plantuml
-  (let* ((plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar"))
-    (setq org-plantuml-jar-path plantuml-jar-path
-          plantuml-default-exec-mode 'jar
-          plantuml-jar-path plantuml-jar-path))
-  (add-to-list 'auto-mode-alist '("\\.pu\\'" . plantuml-mode))
-
-  ;; prettier
-  (setq prettier-js-show-errors 'echo)
-
-  ;; ruby
-  (setq
-   ;; inf-ruby
-   inf-ruby-default-implementation "pry"
-   ;; rubocopfmt
-   rubocopfmt-show-errors 'echo)
-
-  ;; Shell
-  (setq terminal-here-terminal-command (pcase system-type
-                                         ('darwin '("open" "-a" "Alacritty.app" "."))
-                                         ('gnu/linux '("alacritty"))))
-
-  ;; vc-hooks
-  (setq vc-follow-symlinks t)
-
-  ;; yasnippet
-  (setq yas-new-snippet-default "\
-# -*- mode: snippet -*-
-# name: $1
-# contributor : Seong Yong-ju <sei40kr@gmail.com>
-# key: ${2:${1:$(yas--key-from-desc yas-text)}}
-# --
-
-$0")
-  (defun custom//turn-off-yas-auto-indent ()
-    (set (make-local-variable 'yas-indent-line) 'fixed))
-  (spacemacs/add-to-hooks #'custom//turn-off-yas-auto-indent
-                          '(haskell-mode-hook python-mode-hook sass-mode-hook))
+  ;; Projectile
+  (setq helm-source-projectile-files-and-dired-list '(helm-source-projectile-files-list)
+        helm-source-projectile-directories-and-dired-list '(helm-source-projectile-directories-list))
 
   ;; Perspective
   (setq persp-kill-foreign-buffer-behaviour 'kill
         persp-remove-buffers-from-nil-persp-behaviour nil)
-  )
+
+  ;; avy
+  (setq avy-timeout-seconds 0.0)
+
+  ;; helm
+  (setq helm-mini-default-sources '(helm-source-buffers-list))
+
+  ;; UI Toggles
+  (spacemacs/add-to-hooks #'spacemacs/toggle-fill-column-indicator-on
+                          '(prog-mode-hook git-commit-mode-hook)))
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
@@ -770,8 +762,7 @@ This function is called only while dumping Spacemacs configuration. You can
 dump."
   (custom//require-all)
 
-  (custom//load-all)
-  )
+  (custom//load-all))
 
 (defun dotspacemacs/user-config ()
   "Configuration for user code:
@@ -780,17 +771,15 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (custom//require-all)
-  (require 'dash)
 
   (custom/evil-config)
   (custom/file-template-config)
   (custom/treemacs-config)
   (custom/theme-config)
 
-  ;; Fix frame transparency
+  ;; workaround for frame transparency
   (spacemacs/enable-transparency)
-  (add-hook 'after-make-frame-functions #'spacemacs/enable-transparency)
-  )
+  (add-hook 'after-make-frame-functions #'spacemacs/enable-transparency))
 
 (setq custom-file (concat spacemacs-cache-directory ".custom-settings"))
 ;; Do not write anything past this comment. This is where Emacs will
