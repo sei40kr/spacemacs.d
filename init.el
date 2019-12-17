@@ -163,10 +163,9 @@ values."
      dap
      (dash :variables
            dash-autoload-common-docsets nil
-           helm-dash-docset-newpath (case system-type
+           helm-dash-docset-newpath (pcase system-type
                                       ('darwin "~/Library/Application Support/Dash/DocSets")
-                                      ('gnu/linux "~/.local/share/Zeal/Zeal/docsets")
-                                      (otherwise nil)))
+                                      ('gnu/linux "~/.local/share/Zeal/Zeal/docsets")))
      (docker :variables
              docker-dockerfile-backend 'lsp)
      imenu-list
