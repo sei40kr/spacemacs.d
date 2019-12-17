@@ -135,7 +135,7 @@ values."
                  typescript-backend 'lsp
                  typescript-linter 'eslint
                  typescript-lsp-linter nil)
-     yaml
+     (yaml :variables yaml-enable-lsp t)
      ;; Readers
      (deft :variables
        deft-directory "~/Dropbox/deft")
