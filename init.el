@@ -706,10 +706,16 @@ $0")
         org-re-reveal-root (concat (getenv "HOME") "/org/reveal-js"))
 
   ;; PlantUML
-  (let* ((plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar"))
-    (setq org-plantuml-jar-path plantuml-jar-path
-          plantuml-default-exec-mode 'jar
-          plantuml-jar-path plantuml-jar-path))
+  (with-eval-after-load 'plantuml-mode
+    (setq plantuml-default-exec-mode 'jar)
+    (if-let* ((jar-path (cond
+                         ((and (eq system-type 'darwin)
+                               (file-exists-p "/usr/local/opt/plantuml/libexec/plantuml.jar"))
+                          "/usr/local/opt/plantuml/libexec/plantuml.jar")
+                         ((file-exists-p "/usr/share/java/plantuml/plantuml.jar")
+                          "/usr/share/java/plantuml/plantuml.jar"))))
+        (setq plantuml-jar-path jar-path
+              org-plantuml-jar-path jar-path)))
   (add-to-list 'auto-mode-alist '("\\.pu\\'" . plantuml-mode))
 
   ;; Version Control
