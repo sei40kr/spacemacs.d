@@ -215,6 +215,7 @@ values."
      (jest-snippets :location local)
      (competitive-programming-snippets :location local)
      (emacs-atcoder-tools :location local)
+     tabbar
      )
 
    ;; A list of packages that cannot be updated.
@@ -616,6 +617,7 @@ See the header of this file for more information."
                        "evil-custom"
                        "docsets"
                        "projectile-custom"
+                       "tabbar-custom"
                        "treemacs-custom"
                        "theme-custom"))
     (load (concat dotspacemacs-directory file-name))))
@@ -641,6 +643,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (custom/projectile-init)
   (custom/docsets-init)
   (custom/elfeed-init)
+  (custom/tabbar-init)
 
   ;; built-ins
   (setq create-lockfiles nil
@@ -781,6 +784,7 @@ before packages are loaded."
 
   (custom/evil-config)
   (custom/file-template-config)
+  (custom/tabbar-config)
   (custom/treemacs-config)
   (custom/theme-config)
 
