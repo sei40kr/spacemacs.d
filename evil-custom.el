@@ -9,9 +9,6 @@
         hybrid-style-use-evil-search-module t))
 
 (defun custom/evil-config ()
-  (which-key-define-key-recursively global-map [escape] #'ignore)
-  (which-key-define-key-recursively evil-emacs-state-map [escape] #'ignore)
-
   (global-set-key (kbd "C-h") #'delete-backward-char)
   (global-set-key (kbd "C-w") #'backword-kill-word)
   (evil-global-set-key 'normal (kbd "C-s") #'save-buffer)
@@ -44,5 +41,11 @@
   (with-eval-after-load 'evil-core
     (evil-global-set-key 'normal
                          (kbd "<escape>") #'custom/evil-escape-everything))
+
+  ;; which-key
+  (with-eval-after-load 'which-key
+    (which-key-define-key-recursively global-map (kbd "<escape>") #'ignore)
+    (which-key-define-key-recursively evil-emacs-state-map
+                                      (kbd "<escape>") #'ignore))
 
   (spacemacs/toggle-camel-case-motion-globally-on))
