@@ -97,6 +97,8 @@
         treemacs-show-cursor t)
 
   (with-eval-after-load 'treemacs
+    (setq treemacs-sorting 'alphabetic-asc)
+
     (evil-define-key 'treemacs treemacs-mode-map
       (kbd "K")  #'custom/treemacs-select-up
       (kbd "L")  #'treemacs-next-neighbour
