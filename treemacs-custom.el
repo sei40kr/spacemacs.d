@@ -97,6 +97,8 @@
         treemacs-show-cursor t)
 
   (with-eval-after-load 'treemacs
+    (require 'treemacs-persp)
+
     (setq treemacs-sorting 'alphabetic-asc)
 
     (evil-define-key 'treemacs treemacs-mode-map

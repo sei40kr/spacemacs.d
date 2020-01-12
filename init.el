@@ -215,6 +215,7 @@ values."
      (jest-snippets :location local)
      (competitive-programming-snippets :location local)
      (emacs-atcoder-tools :location local)
+     treemacs-persp
      tabbar
      )
 
