@@ -3,7 +3,9 @@
 (defun custom//magit-repos-to-projectile-projects ()
   (require 'magit-repos)
   (setq projectile-known-projects
-        (mapcar #'abbreviate-file-name (magit-list-repos))))
+        (append
+         (mapcar #'abbreviate-file-name (magit-list-repos))
+         '("/ssh:dmz.yong-ju.me:~/my-cloud"))))
 
 (defun custom/projectile-init ()
   (setq projectile-git-submodule-command nil)
