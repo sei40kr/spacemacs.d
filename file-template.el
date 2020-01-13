@@ -27,6 +27,7 @@
     ("\\.zsh\\'"                 . "template.zsh")
     (sh-mode                     . "template.sh")
     (fish-mode                   . "template.fish")
+    ("/docker-compose\\.yml\\'"  . "docker-compose.yml")
     ("\\-service\\.ya?ml\\'"     . "kubernetes-service.yml")
     ("\\-volumeclaim\\.ya?ml\\'" . "kubernetes-volumeclaim.yml")
     ("/\\.travis\\.ya?ml\\'"     . "_travis.yml")
