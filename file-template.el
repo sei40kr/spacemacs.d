@@ -30,6 +30,7 @@
     ("/docker-compose\\.yml\\'"  . "docker-compose.yml")
     ("\\-service\\.ya?ml\\'"     . "kubernetes-service.yml")
     ("\\-volumeclaim\\.ya?ml\\'" . "kubernetes-volumeclaim.yml")
+    ("/ecs-params\\.yml\\'"      . "ecs-params.yml")
     ("/\\.travis\\.ya?ml\\'"     . "_travis.yml")
     (yaml-mode                   . "template.yml")
     ))
